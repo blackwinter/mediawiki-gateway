@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module MediaWiki::Gateway::Site - mediawiki-gateway Application documentation (v0.6.2)</title>
+
+<link href="../../fonts.css" rel="stylesheet">
+<link href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/navigation.js"></script>
+<script src="../../js/search_index.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/searcher.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-export">#export</a>
+    
+    <li ><a href="#method-i-extensions">#extensions</a>
+    
+    <li ><a href="#method-i-import">#import</a>
+    
+    <li ><a href="#method-i-namespaces_by_prefix">#namespaces_by_prefix</a>
+    
+    <li ><a href="#method-i-siteinfo">#siteinfo</a>
+    
+    <li ><a href="#method-i-version">#version</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-MediaWiki::Gateway::Site">
+  <h1 id="module-MediaWiki::Gateway::Site" class="module">
+    module MediaWiki::Gateway::Site
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-export" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">export</span><span
+            class="method-args">(page_titles, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Exports a page or set of pages</p>
+<dl class="rdoc-list label-list"><dt>page_titles
+<dd>
+<p>String or array of page titles to fetch</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns MediaWiki XML dump</p>
+          
+          
+
+          
+          <div class="method-source-code" id="export-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">export</span>(<span class="ruby-identifier">page_titles</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;titles&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Array</span>(<span class="ruby-identifier">page_titles</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;|&#39;</span>),
+    <span class="ruby-string">&#39;export&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&#39;exportnowrap&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>
+  )).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-extensions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">extensions</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a list of all installed (and registered) extensions</p>
+<dl class="rdoc-list label-list"><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns array of extensions (name =&gt; version)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="extensions-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extensions</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;meta&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;siteinfo&#39;</span>,
+    <span class="ruby-string">&#39;siprop&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;extensions&#39;</span>
+  )).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">res</span>, <span class="ruby-string">&#39;//ext&#39;</span>).<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">extension</span>, <span class="ruby-identifier">extensions</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">extension</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;name&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">extensions</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">extension</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;version&#39;</span>]
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-import" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">import</span><span
+            class="method-args">(xmlfile, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Imports a MediaWiki XML dump</p>
+<dl class="rdoc-list label-list"><dt>xml
+<dd>
+<p>String or array of page names to fetch</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns XML array &lt;api&gt;&lt;import&gt;&lt;page/&gt;&lt;page/&gt;…
+&lt;page revisions=“1”&gt; (or more) means successfully imported &lt;page
+revisions=“0”&gt; means duplicate, not imported</p>
+          
+          
+
+          
+          <div class="method-source-code" id="import-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">import</span>(<span class="ruby-identifier">xmlfile</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;import&#39;</span>,
+    <span class="ruby-string">&#39;xml&#39;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">xmlfile</span>),
+    <span class="ruby-string">&#39;token&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-string">&#39;import&#39;</span>, <span class="ruby-string">&#39;Main Page&#39;</span>), <span class="ruby-comment"># NB: dummy page name</span>
+    <span class="ruby-string">&#39;format&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;xml&#39;</span>
+  ))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-namespaces_by_prefix" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">namespaces_by_prefix</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a list of all known namespaces</p>
+<dl class="rdoc-list label-list"><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns array of namespaces (name =&gt; id)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="namespaces_by_prefix-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">namespaces_by_prefix</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;meta&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;siteinfo&#39;</span>,
+    <span class="ruby-string">&#39;siprop&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;namespaces&#39;</span>
+  )).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">res</span>, <span class="ruby-string">&#39;//ns&#39;</span>).<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">namespaces</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">prefix</span> = <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;canonical&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">namespaces</span>[<span class="ruby-identifier">prefix</span>] = <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;id&#39;</span>].<span class="ruby-identifier">to_i</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-siteinfo" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">siteinfo</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the wiki&#39;s siteinfo as a hash. See <a
+href="http://www.mediawiki.org/wiki/API:Siteinfo">www.mediawiki.org/wiki/API:Siteinfo</a>.</p>
+<dl class="rdoc-list label-list"><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="siteinfo-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">siteinfo</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;meta&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;siteinfo&#39;</span>
+  )).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">first</span>(<span class="ruby-identifier">res</span>, <span class="ruby-string">&#39;//query/general&#39;</span>)
+    .<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span>(<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>), <span class="ruby-identifier">h</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-version" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">version</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the wiki&#39;s MediaWiki version.</p>
+<dl class="rdoc-list label-list"><dt>options
+<dd>
+<p>Hash of additional options passed to <a
+href="Site.html#method-i-siteinfo">siteinfo</a></p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="version-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">version</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">siteinfo</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">fetch</span>(<span class="ruby-string">&#39;generator&#39;</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">split</span>.<span class="ruby-identifier">last</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

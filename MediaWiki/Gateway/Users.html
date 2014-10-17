@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module MediaWiki::Gateway::Users - mediawiki-gateway Application documentation (v0.6.2)</title>
+
+<link href="../../fonts.css" rel="stylesheet">
+<link href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/navigation.js"></script>
+<script src="../../js/search_index.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/searcher.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-contributions">#contributions</a>
+    
+    <li ><a href="#method-i-create_account">#create_account</a>
+    
+    <li ><a href="#method-i-email_user">#email_user</a>
+    
+    <li ><a href="#method-i-get_options_token">#get_options_token</a>
+    
+    <li ><a href="#method-i-get_userrights_token">#get_userrights_token</a>
+    
+    <li ><a href="#method-i-login">#login</a>
+    
+    <li ><a href="#method-i-options">#options</a>
+    
+    <li ><a href="#method-i-set_groups">#set_groups</a>
+    
+    <li ><a href="#method-i-userrights">#userrights</a>
+    
+    <li ><a href="#method-i-users">#users</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-MediaWiki::Gateway::Users">
+  <h1 id="module-MediaWiki::Gateway::Users" class="module">
+    module MediaWiki::Gateway::Users
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-contributions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">contributions</span><span
+            class="method-args">(user, count = nil, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get user contributions</p>
+
+<p>user: The user name count: Maximum number of contributions to retreive, or
+nil for all</p>
+<dl class="rdoc-list label-list"><dt>options
+<dd>
+<p>Optional hash of options, eg. { &#39;ucnamespace&#39; =&gt; 4 }.  See <a
+href="http://www.mediawiki.org/wiki/API:Usercontribs">www.mediawiki.org/wiki/API:Usercontribs</a></p>
+</dd></dl>
+
+<p>Returns array of hashes containing the “item” attributes defined here: <a
+href="http://www.mediawiki.org/wiki/API:Usercontribs">www.mediawiki.org/wiki/API:Usercontribs</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="contributions-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">contributions</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">count</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">result</span> = []
+
+  <span class="ruby-identifier">iterate_query</span>(<span class="ruby-string">&#39;usercontribs&#39;</span>, <span class="ruby-string">&#39;//item&#39;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;uccontinue&#39;</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;ucuser&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>,
+    <span class="ruby-string">&#39;uclimit&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:limit</span>]
+  )) { <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">hash</span> = {}
+    <span class="ruby-identifier">element</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">value</span> }
+  }
+
+  <span class="ruby-identifier">count</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">take</span>(<span class="ruby-identifier">count</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_account" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_account</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a new account</p>
+<dl class="rdoc-list label-list"><dt>options
+<dd>
+<p>is <code>Hash</code> passed as query arguments. See <a
+href="https://www.mediawiki.org/wiki/API:Account_creation#Parameters">www.mediawiki.org/wiki/API:Account_creation#Parameters</a>
+for more information.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="create_account-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_account</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;createaccount&#39;</span>)).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-email_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">email_user</span><span
+            class="method-args">(user, subject, text, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sends e-mail to a user</p>
+<dl class="rdoc-list label-list"><dt>user
+<dd>
+<p>Username to send mail to (name only: eg. &#39;Bob&#39;, not
+&#39;User:Bob&#39;)</p>
+</dd><dt>subject
+<dd>
+<p>Subject of message</p>
+</dd><dt>content
+<dd>
+<p>Content of message</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Will raise a &#39;noemail&#39; <a href="../APIError.html">APIError</a> if
+the target user does not have a confirmed email address, see <a
+href="http://www.mediawiki.org/wiki/API:E-mail">www.mediawiki.org/wiki/API:E-mail</a>
+for details.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="email_user-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">email_user</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">subject</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;emailuser&#39;</span>,
+    <span class="ruby-string">&#39;target&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>,
+    <span class="ruby-string">&#39;subject&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">subject</span>,
+    <span class="ruby-string">&#39;text&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">text</span>,
+    <span class="ruby-string">&#39;token&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-string">&#39;email&#39;</span>, <span class="ruby-node">&quot;User:#{user}&quot;</span>)
+  )).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-identifier">res</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;emailuser&#39;</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;result&#39;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;Success&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-login" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">login</span><span
+            class="method-args">(username, password, domain = 'local', options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Login to MediaWiki</p>
+<dl class="rdoc-list label-list"><dt>username
+<dd>
+<p>Username</p>
+</dd><dt>password
+<dd>
+<p>Password</p>
+</dd><dt>domain
+<dd>
+<p>Domain for authentication plugin logins (eg. LDAP), optional – defaults to
+&#39;local&#39; if not given</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Throws <a href="../Unauthorized.html">MediaWiki::Unauthorized</a> if login
+fails</p>
+          
+          
+
+          
+          <div class="method-source-code" id="login-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">domain</span> = <span class="ruby-string">&#39;local&#39;</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;login&#39;</span>,
+    <span class="ruby-string">&#39;lgname&#39;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span>,
+    <span class="ruby-string">&#39;lgpassword&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">password</span>,
+    <span class="ruby-string">&#39;lgdomain&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">domain</span>
+  ))
+
+  <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">password</span>
+  <span class="ruby-ivar">@username</span> = <span class="ruby-identifier">username</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">options</span><span
+            class="method-args">(changes = {}, optionname = nil, optionvalue = nil, reset = false, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets options for currenlty logged in user</p>
+<dl class="rdoc-list label-list"><dt>changes
+<dd>
+<p>a <code>Hash</code> that will be transformed into an equal sign and
+pipe-separated key value parameter</p>
+</dd><dt>optionname
+<dd>
+<p>a <code>String</code> indicating which option to change (optional)</p>
+</dd><dt>optionvalue
+<dd>
+<p>the new value for optionname - allows pipe characters (optional)</p>
+</dd><dt>reset
+<dd>
+<p>a <code>Boolean</code> indicating if all preferences should be reset to
+site defaults (optional)</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="options-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">options</span>(<span class="ruby-identifier">changes</span> = {}, <span class="ruby-identifier">optionname</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">optionvalue</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">reset</span> = <span class="ruby-keyword">false</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">form_data</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;options&#39;</span>,
+    <span class="ruby-string">&#39;token&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_options_token</span>
+  )
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">changes</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">changes</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;change&#39;</span>] = <span class="ruby-identifier">changes</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{key}=#{value}&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;|&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">optionname</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">optionname</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">form_data</span>[<span class="ruby-identifier">optionname</span>] = <span class="ruby-identifier">optionvalue</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">reset</span>
+    <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;reset&#39;</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_groups" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_groups</span><span
+            class="method-args">(user, groups_to_add = [], groups_to_remove = [], comment = '', options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set groups for a user</p>
+<dl class="rdoc-list label-list"><dt>user
+<dd>
+<p>Username of user to modify</p>
+</dd><dt>groups_to_add
+<dd>
+<p>Groups to add user to, as an array or a string if a single group (optional)</p>
+</dd><dt>groups_to_remove
+<dd>
+<p>Groups to remove user from, as an array or a string if a single group
+(optional)</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="set_groups-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_groups</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">groups_to_add</span> = [], <span class="ruby-identifier">groups_to_remove</span> = [], <span class="ruby-identifier">comment</span> = <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">token</span> = <span class="ruby-identifier">get_userrights_token</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">userrights</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">token</span>, <span class="ruby-identifier">groups_to_add</span>, <span class="ruby-identifier">groups_to_remove</span>, <span class="ruby-identifier">comment</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-users" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">users</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a list of users</p>
+<dl class="rdoc-list label-list"><dt>options
+<dd>
+<p>Optional hash of options, eg. { &#39;augroup&#39; =&gt; &#39;sysop&#39; }. 
+See <a
+href="http://www.mediawiki.org/wiki/API:Allusers">www.mediawiki.org/wiki/API:Allusers</a></p>
+</dd></dl>
+
+<p>Returns array of user names (empty if no matches)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="users-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">users</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">iterate_query</span>(<span class="ruby-string">&#39;allusers&#39;</span>, <span class="ruby-string">&#39;//u&#39;</span>, <span class="ruby-string">&#39;name&#39;</span>, <span class="ruby-string">&#39;aufrom&#39;</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;aulimit&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:limit</span>]
+  ))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-get_options_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_options_token</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_options_token-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 151</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_options_token</span>
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;tokens&#39;</span>, <span class="ruby-string">&#39;type&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;options&#39;</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">res</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;tokens&#39;</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;optionstoken&#39;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_userrights_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_userrights_token</span><span
+            class="method-args">(user)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>User rights management (aka group assignment)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_userrights_token-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_userrights_token</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(
+    <span class="ruby-string">&#39;action&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;list&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;users&#39;</span>,
+    <span class="ruby-string">&#39;ustoken&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;userrights&#39;</span>,
+    <span class="ruby-string">&#39;ususers&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>
+  ).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-identifier">token</span> = <span class="ruby-identifier">res</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/users/user&#39;</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;userrightstoken&#39;</span>]
+
+  <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;RESPONSE: #{res.to_s}&quot;</span>)
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">token</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">res</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/users/user&#39;</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;missing&#39;</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">APIError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;invaliduser&#39;</span>, <span class="ruby-node">&quot;User &#39;#{user}&#39; was not found (get_userrights_token)&quot;</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Unauthorized</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;User &#39;#{@username}&#39; is not permitted to perform this operation: get_userrights_token&quot;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">token</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-userrights" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">userrights</span><span
+            class="method-args">(user, token, groups_to_add, groups_to_remove, reason, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="userrights-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/users.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">userrights</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">token</span>, <span class="ruby-identifier">groups_to_add</span>, <span class="ruby-identifier">groups_to_remove</span>, <span class="ruby-identifier">reason</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-comment"># groups_to_add and groups_to_remove can be a string or an array. Turn them into MediaWiki&#39;s pipe-delimited list format.</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">groups_to_add</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+    <span class="ruby-identifier">groups_to_add</span> = <span class="ruby-identifier">groups_to_add</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;|&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">groups_to_remove</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+    <span class="ruby-identifier">groups_to_remove</span> = <span class="ruby-identifier">groups_to_remove</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;|&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;userrights&#39;</span>,
+    <span class="ruby-string">&#39;user&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>,
+    <span class="ruby-string">&#39;token&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">token</span>,
+    <span class="ruby-string">&#39;add&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">groups_to_add</span>,
+    <span class="ruby-string">&#39;remove&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">groups_to_remove</span>,
+    <span class="ruby-string">&#39;reason&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">reason</span>
+  )).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module MediaWiki::Gateway::Query - mediawiki-gateway Application documentation (v0.6.2)</title>
+
+<link href="../../fonts.css" rel="stylesheet">
+<link href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/navigation.js"></script>
+<script src="../../js/search_index.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/searcher.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-custom_query">#custom_query</a>
+    
+    <li ><a href="#method-i-search">#search</a>
+    
+    <li ><a href="#method-i-semantic_query">#semantic_query</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-MediaWiki::Gateway::Query">
+  <h1 id="module-MediaWiki::Gateway::Query" class="module">
+    module MediaWiki::Gateway::Query
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-custom_query" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">custom_query</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Make a custom query</p>
+<dl class="rdoc-list label-list"><dt>options
+<dd>
+<p>query options</p>
+</dd></dl>
+
+<p>Returns the REXML::Element object as result</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">def</span> <span class="ruby-identifier">creation_time</span>(<span class="ruby-identifier">pagename</span>)
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">bot</span>.<span class="ruby-identifier">custom_query</span>(:<span class="ruby-identifier">prop</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">revisions</span>,
+                         :<span class="ruby-identifier">titles</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pagename</span>,
+                         :<span class="ruby-identifier">rvprop</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">timestamp</span>,
+                         :<span class="ruby-identifier">rvdir</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">newer</span>,
+                         :<span class="ruby-identifier">rvlimit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+  <span class="ruby-identifier">timestr</span> = <span class="ruby-identifier">res</span>.<span class="ruby-identifier">get_elements</span>(<span class="ruby-string">&#39;*  /  rev&#39;</span>)[<span class="ruby-value">0</span>].<span class="ruby-identifier">attribute</span>(<span class="ruby-string">&#39;timestamp&#39;</span>).<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">timestr</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="custom_query-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/query.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">custom_query</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">form_data</span> = {}
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">form_data</span>[<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span> }
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>)).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query&#39;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search</span><span
+            class="method-args">(key, namespaces = nil, limit = @options[:limit], max_results = @options[:max_results], options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a list of pages with matching content in given namespaces</p>
+<dl class="rdoc-list label-list"><dt>key
+<dd>
+<p>Search key</p>
+</dd><dt>namespaces
+<dd>
+<p>Array of namespace names to search (defaults to main only)</p>
+</dd><dt>limit
+<dd>
+<p>Maximum number of hits to ask for (defaults to 500; note that Wikimedia
+Foundation wikis allow only 50 for normal users)</p>
+</dd><dt>max_results
+<dd>
+<p>Maximum total number of results to return</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns array of page titles (empty if no matches)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="search-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/query.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">namespaces</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">limit</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:limit</span>], <span class="ruby-identifier">max_results</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:max_results</span>], <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">titles</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">form_data</span> = [], <span class="ruby-value">0</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;list&#39;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;search&#39;</span>,
+    <span class="ruby-string">&#39;srwhat&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;text&#39;</span>,
+    <span class="ruby-string">&#39;srsearch&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">key</span>,
+    <span class="ruby-string">&#39;srlimit&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">limit</span>
+  )
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">namespaces</span>
+    <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;srnamespace&#39;</span>] = <span class="ruby-constant">Array</span>(<span class="ruby-identifier">namespaces</span>).<span class="ruby-identifier">map!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">namespaces_by_prefix</span>[<span class="ruby-identifier">ns</span>]
+    }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;|&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;sroffset&#39;</span>] = <span class="ruby-identifier">offset</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">offset</span>
+    <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;srlimit&#39;</span>]  = [<span class="ruby-identifier">limit</span>, <span class="ruby-identifier">max_results</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">offset</span>.<span class="ruby-identifier">to_i</span>].<span class="ruby-identifier">min</span>
+
+    <span class="ruby-identifier">res</span>, <span class="ruby-identifier">offset</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>, <span class="ruby-string">&#39;//query-continue/search/@sroffset&#39;</span>)
+
+    <span class="ruby-identifier">titles</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">res</span>, <span class="ruby-string">&#39;//p&#39;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;title&#39;</span>] }
+  <span class="ruby-keyword">end</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">offset</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">offset</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">max_results</span>.<span class="ruby-identifier">to_i</span>
+
+  <span class="ruby-identifier">titles</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-semantic_query" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">semantic_query</span><span
+            class="method-args">(query, params = [], options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Execute Semantic Mediawiki query</p>
+<dl class="rdoc-list label-list"><dt>query
+<dd>
+<p>Semantic Mediawiki query</p>
+</dd><dt>params
+<dd>
+<p>Array of additional parameters or options, eg. mainlabel=Foo or ?Place
+(optional)</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns result as an HTML string</p>
+          
+          
+
+          
+          <div class="method-source-code" id="semantic_query-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/query.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">semantic_query</span>(<span class="ruby-identifier">query</span>, <span class="ruby-identifier">params</span> = [], <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">smw_version</span> = <span class="ruby-identifier">extensions</span>[<span class="ruby-string">&#39;Semantic MediaWiki&#39;</span>]
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">MediaWiki</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>, <span class="ruby-string">&#39;Semantic MediaWiki extension not installed.&#39;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">smw_version</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1.7</span>
+    <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+      <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;ask&#39;</span>,
+      <span class="ruby-string">&#39;query&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{query}|#{params.join(&#39;|&#39;)}&quot;</span>
+    )).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+      <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;parse&#39;</span>,
+      <span class="ruby-string">&#39;prop&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;text&#39;</span>,
+      <span class="ruby-string">&#39;text&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;{{#ask:#{query}|#{params.push(&#39;format=list&#39;).join(&#39;|&#39;)}}}&quot;</span>
+    )).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;parse/text&#39;</span>].<span class="ruby-identifier">text</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

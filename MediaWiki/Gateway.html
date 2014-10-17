@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class MediaWiki::Gateway - mediawiki-gateway Application documentation (v0.6.2)</title>
+
+<link href="../fonts.css" rel="stylesheet">
+<link href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/search_index.js"></script>
+<script src="../js/search.js"></script>
+<script src="../js/searcher.js"></script>
+<script src="../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Object
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Gateway/Files.html">MediaWiki::Gateway::Files</a>
+  
+  
+  
+    <li><a class="include" href="Gateway/Pages.html">MediaWiki::Gateway::Pages</a>
+  
+  
+  
+    <li><a class="include" href="Gateway/Query.html">MediaWiki::Gateway::Query</a>
+  
+  
+  
+    <li><a class="include" href="Gateway/Site.html">MediaWiki::Gateway::Site</a>
+  
+  
+  
+    <li><a class="include" href="Gateway/Users.html">MediaWiki::Gateway::Users</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-get_response">#get_response</a>
+    
+    <li ><a href="#method-i-get_token">#get_token</a>
+    
+    <li ><a href="#method-i-http_send">#http_send</a>
+    
+    <li ><a href="#method-i-iterate_query">#iterate_query</a>
+    
+    <li ><a href="#method-i-make_api_request">#make_api_request</a>
+    
+    <li ><a href="#method-i-valid_page-3F">#valid_page?</a>
+    
+    <li ><a href="#method-i-validate_options">#validate_options</a>
+    
+    <li ><a href="#method-i-warning">#warning</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-MediaWiki::Gateway">
+  <h1 id="class-MediaWiki::Gateway" class="class">
+    class MediaWiki::Gateway
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-base_url" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">base_url</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-cookies" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cookies</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-log" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">log</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(url, options = {}, http_options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set up a <a href="Gateway.html">MediaWiki::Gateway</a> for a given
+MediaWiki installation</p>
+<dl class="rdoc-list label-list"><dt>url
+<dd>
+<p>Path to API of target MediaWiki (eg. &#39;<a
+href="http://en.wikipedia.org/w/api.php">en.wikipedia.org/w/api.php</a>&#39;)</p>
+</dd><dt>options
+<dd>
+<p>Hash of options</p>
+</dd><dt>http_options
+<dd>
+<p>Hash of options for RestClient::Request (via <a
+href="Gateway.html#method-i-http_send">#http_send</a>)</p>
+</dd></dl>
+
+<p>Options:</p>
+<dl class="rdoc-list label-list"><dt>:bot
+<dd>
+<p>When set to true, executes API queries with the bot parameter (see <a
+href="http://www.mediawiki.org/wiki/API:Edit#Parameters">www.mediawiki.org/wiki/API:Edit#Parameters</a>).
+Defaults to false.</p>
+</dd><dt>:ignorewarnings
+<dd>
+<p>Log API warnings and invalid page titles, instead throwing <a
+href="APIError.html">MediaWiki::APIError</a></p>
+</dd><dt>:limit
+<dd>
+<p>Maximum number of results returned per search (see <a
+href="http://www.mediawiki.org/wiki/API:Query_-_Lists#Limits">www.mediawiki.org/wiki/API:Query_-_Lists#Limits</a>),
+defaults to the MediaWiki default of 500.</p>
+</dd><dt>:logdevice
+<dd>
+<p>Log device to use.  Defaults to STDERR</p>
+</dd><dt>:loglevel
+<dd>
+<p>Log level to use, defaults to Logger::WARN.  Set to Logger::DEBUG to dump
+every request and response to the log.</p>
+</dd><dt>:maxlag
+<dd>
+<p>Maximum allowed server lag (see <a
+href="http://www.mediawiki.org/wiki/Manual:Maxlag_parameter">www.mediawiki.org/wiki/Manual:Maxlag_parameter</a>),
+defaults to 5 seconds.</p>
+</dd><dt>:retry_count
+<dd>
+<p>Number of times to try before giving up if MediaWiki returns 503 Service
+Unavailable, defaults to 3 (original request plus two retries).</p>
+</dd><dt>:retry_delay
+<dd>
+<p>Seconds to wait before retry if MediaWiki returns 503 Service Unavailable,
+defaults to 10 seconds.</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">http_options</span> = {})
+  <span class="ruby-ivar">@options</span> = {
+    <span class="ruby-identifier">bot</span><span class="ruby-operator">:</span>         <span class="ruby-keyword">false</span>,
+    <span class="ruby-identifier">limit</span><span class="ruby-operator">:</span>       <span class="ruby-value">500</span>,
+    <span class="ruby-identifier">logdevice</span><span class="ruby-operator">:</span>   <span class="ruby-constant">STDERR</span>,
+    <span class="ruby-identifier">loglevel</span><span class="ruby-operator">:</span>    <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">WARN</span>,
+    <span class="ruby-identifier">max_results</span><span class="ruby-operator">:</span> <span class="ruby-value">500</span>,
+    <span class="ruby-identifier">maxlag</span><span class="ruby-operator">:</span>      <span class="ruby-value">5</span>,
+    <span class="ruby-identifier">retry_count</span><span class="ruby-operator">:</span> <span class="ruby-value">3</span>,
+    <span class="ruby-identifier">retry_delay</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>
+  }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+
+  <span class="ruby-ivar">@log</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@options</span>[<span class="ruby-value">:logdevice</span>])
+  <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">level</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:loglevel</span>]
+
+  <span class="ruby-ivar">@http_options</span>, <span class="ruby-ivar">@wiki_url</span>, <span class="ruby-ivar">@cookies</span>, <span class="ruby-ivar">@headers</span> = <span class="ruby-identifier">http_options</span>, <span class="ruby-identifier">url</span>, {}, {
+    <span class="ruby-string">&#39;User-Agent&#39;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{self.class}/#{MediaWiki::VERSION}&quot;</span>,
+    <span class="ruby-string">&#39;Accept-Encoding&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;gzip&#39;</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-get_response" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_response</span><span
+            class="method-args">(res)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get API XML response If there are errors or warnings, raise <a
+href="APIError.html">APIError</a> Otherwise return XML root</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_response-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway.rb, line 173</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_response</span>(<span class="ruby-identifier">res</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">res</span> = <span class="ruby-identifier">res</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-string">&#39;UTF-8&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">res</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:force_encoding</span>)
+    <span class="ruby-identifier">doc</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">res</span>).<span class="ruby-identifier">root</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">ParseException</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">MediaWiki</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Response is not XML.  Are you sure you are pointing to api.php?&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;RES: #{doc}&quot;</span>)
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-node">%w[api mediawiki]</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">doc</span>.<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">MediaWiki</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Response does not contain Mediawiki API XML: #{res}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">error</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;error&#39;</span>]
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">APIError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">error</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-operator">*</span><span class="ruby-node">%w[code info]</span>))
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">warnings</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;warnings&#39;</span>]
+    <span class="ruby-identifier">warning</span>(<span class="ruby-node">&quot;API warning: #{warnings.children.map(&amp;:text).join(&#39;, &#39;)}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">doc</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_token</span><span
+            class="method-args">(type, page_titles)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Fetch token (type &#39;delete&#39;, &#39;edit&#39;, &#39;email&#39;,
+&#39;import&#39;, &#39;move&#39;, &#39;protect&#39;)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_token-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">page_titles</span>)
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(
+    <span class="ruby-string">&#39;action&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;prop&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;info&#39;</span>,
+    <span class="ruby-string">&#39;intoken&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
+    <span class="ruby-string">&#39;titles&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page_titles</span>
+  ).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">token</span> = <span class="ruby-identifier">res</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/pages/page&#39;</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-identifier">type</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;token&#39;</span>]
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Unauthorized</span>.<span class="ruby-identifier">new</span> <span class="ruby-node">&quot;User is not permitted to perform this operation: #{type}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">token</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-http_send" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">http_send</span><span
+            class="method-args">(url, form_data, headers, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Execute the HTTP request using either GET or POST as appropriate</p>
+          
+          
+
+          
+          <div class="method-source-code" id="http_send-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">http_send</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">form_data</span>, <span class="ruby-identifier">headers</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+  <span class="ruby-identifier">opts</span> = <span class="ruby-ivar">@http_options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">url</span><span class="ruby-operator">:</span> <span class="ruby-identifier">url</span>, <span class="ruby-identifier">headers</span><span class="ruby-operator">:</span> <span class="ruby-identifier">headers</span>)
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:method</span>] = <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;action&#39;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;query&#39;</span> <span class="ruby-operator">?</span> <span class="ruby-value">:get</span> <span class="ruby-operator">:</span> <span class="ruby-value">:post</span>
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:method</span>] <span class="ruby-operator">==</span> <span class="ruby-value">:get</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">headers</span>[<span class="ruby-value">:params</span>] = <span class="ruby-identifier">form_data</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">opts</span>[<span class="ruby-value">:payload</span>] = <span class="ruby-identifier">form_data</span>
+
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;#{opts[:method].upcase}: #{form_data.inspect}, #{@cookies.inspect}&quot;</span>)
+
+  <span class="ruby-constant">RestClient</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-iterate_query" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">iterate_query</span><span
+            class="method-args">(list, res_xpath, attr, param, options, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterate over query results</p>
+<dl class="rdoc-list label-list"><dt>list
+<dd>
+<p>list name to query</p>
+</dd><dt>res_xpath
+<dd>
+<p>XPath selector for results</p>
+</dd><dt>attr
+<dd>
+<p>attribute name to extract, if any</p>
+</dd><dt>param
+<dd>
+<p>parameter name to continue query</p>
+</dd><dt>options
+<dd>
+<p>additional query options</p>
+</dd></dl>
+
+<p>Yields each attribute value, or, if <code>attr</code> is nil, each
+REXML::Element.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="iterate_query-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">iterate_query</span>(<span class="ruby-identifier">list</span>, <span class="ruby-identifier">res_xpath</span>, <span class="ruby-identifier">attr</span>, <span class="ruby-identifier">param</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">items</span>, <span class="ruby-identifier">block</span> = [], <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">items</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item</span> } <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block</span>
+
+  <span class="ruby-identifier">attribute_names</span> = <span class="ruby-node">%w[from continue]</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+    <span class="ruby-node">&quot;name()=&#39;#{param[0, 2]}#{name}&#39;&quot;</span>
+  }
+
+  <span class="ruby-identifier">req_xpath</span> = <span class="ruby-node">&quot;//query-continue/#{list}/@*[#{attribute_names.join(&#39; or &#39;)}]&quot;</span>
+  <span class="ruby-identifier">res_xpath</span> = <span class="ruby-node">&quot;//query/#{list}/#{res_xpath}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">res_xpath</span>.<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">&#39;/&#39;</span>)
+
+  <span class="ruby-identifier">options</span>, <span class="ruby-identifier">continue</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>, <span class="ruby-string">&#39;list&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">list</span>), <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-identifier">loop</span> {
+    <span class="ruby-identifier">res</span>, <span class="ruby-identifier">continue</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>, <span class="ruby-identifier">req_xpath</span>)
+
+    <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">res</span>, <span class="ruby-identifier">res_xpath</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">block</span>[<span class="ruby-identifier">attr</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-identifier">attr</span>] <span class="ruby-operator">:</span> <span class="ruby-identifier">element</span>]
+    }
+
+    <span class="ruby-identifier">continue</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">param</span>] = <span class="ruby-identifier">continue</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">break</span>
+  }
+
+  <span class="ruby-identifier">items</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-make_api_request" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_api_request</span><span
+            class="method-args">(form_data, continue_xpath = nil, retry_count = 1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Make generic request to API</p>
+<dl class="rdoc-list label-list"><dt>form_data
+<dd>
+<p>hash or string of attributes to post</p>
+</dd><dt>continue_xpath
+<dd>
+<p>XPath selector for query continue parameter</p>
+</dd><dt>retry_count
+<dd>
+<p>Counter for retries</p>
+</dd></dl>
+
+<p>Returns XML document</p>
+          
+          
+
+          
+          <div class="method-source-code" id="make_api_request-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>, <span class="ruby-identifier">continue_xpath</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">retry_count</span> = <span class="ruby-value">1</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">form_data</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+    <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;format&#39;</span>] = <span class="ruby-string">&#39;xml&#39;</span>
+    <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;maxlag&#39;</span>] = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:maxlag</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">http_send</span>(<span class="ruby-ivar">@wiki_url</span>, <span class="ruby-identifier">form_data</span>, <span class="ruby-ivar">@headers</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">cookies</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cookies</span>)) { <span class="ruby-operator">|</span><span class="ruby-identifier">response</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">503</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">retry_count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:retry_count</span>]
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-node">&quot;503 Service Unavailable: #{response.body}.  Retry in #{@options[:retry_delay]} seconds.&quot;</span>)
+      <span class="ruby-identifier">sleep</span>(<span class="ruby-ivar">@options</span>[<span class="ruby-value">:retry_delay</span>])
+      <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>, <span class="ruby-identifier">continue_xpath</span>, <span class="ruby-identifier">retry_count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Check response for errors and return XML</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">200</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">300</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">MediaWiki</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Bad response: #{response}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">doc</span> = <span class="ruby-identifier">get_response</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">dup</span>)
+
+    <span class="ruby-comment"># login and createaccount actions require a second request with a token received on the first request</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-node">%w[login createaccount]</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">action</span> = <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;action&#39;</span>])
+      <span class="ruby-identifier">action_result</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-identifier">action</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;result&#39;</span>]
+      <span class="ruby-ivar">@cookies</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">cookies</span>)
+
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">action_result</span>.<span class="ruby-identifier">downcase</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;success&#39;</span>
+          <span class="ruby-keyword">return</span> [<span class="ruby-identifier">doc</span>, <span class="ruby-keyword">false</span>]
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;needtoken&#39;</span>
+          <span class="ruby-identifier">token</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-identifier">action</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;token&#39;</span>]
+
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;login&#39;</span>
+            <span class="ruby-keyword">return</span> <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&#39;lgtoken&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">token</span>))
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;createaccount&#39;</span>
+            <span class="ruby-keyword">return</span> <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&#39;token&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">token</span>))
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;login&#39;</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Unauthorized</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Login failed: #{action_result}&quot;</span>)
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;createaccount&#39;</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Unauthorized</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Account creation failed: #{action_result}&quot;</span>)
+          <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">return</span> [<span class="ruby-identifier">doc</span>, (<span class="ruby-identifier">continue_xpath</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query-continue&#39;</span>]) <span class="ruby-operator">?</span>
+      <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">first</span>(<span class="ruby-identifier">doc</span>, <span class="ruby-identifier">continue_xpath</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>]
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-valid_page-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">valid_page?</span><span
+            class="method-args">(page)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="valid_page-3F-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway.rb, line 206</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">valid_page?</span>(<span class="ruby-identifier">page</span>)
+  <span class="ruby-identifier">page</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;missing&#39;</span>] <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">page</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;invalid&#39;</span>] <span class="ruby-operator">||</span>
+    <span class="ruby-identifier">warning</span>(<span class="ruby-node">&quot;Invalid title &#39;#{page.attributes[&#39;title&#39;]}&#39;&quot;</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-validate_options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_options</span><span
+            class="method-args">(options, valid_options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validate_options-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway.rb, line 198</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_options</span>(<span class="ruby-identifier">options</span>, <span class="ruby-identifier">valid_options</span>)
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid_options</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opt</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Unknown option &#39;#{opt}&#39;&quot;</span>, <span class="ruby-identifier">caller</span>(<span class="ruby-value">1</span>)
+    <span class="ruby-keyword">end</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-warning" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">warning</span><span
+            class="method-args">(msg)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="warning-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway.rb, line 211</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">warning</span>(<span class="ruby-identifier">msg</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">APIError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;warning&#39;</span>, <span class="ruby-identifier">msg</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:ignorewarnings</span>]
+  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-identifier">msg</span>)
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

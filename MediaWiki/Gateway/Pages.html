@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module MediaWiki::Gateway::Pages - mediawiki-gateway Application documentation (v0.6.2)</title>
+
+<link href="../../fonts.css" rel="stylesheet">
+<link href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/navigation.js"></script>
+<script src="../../js/search_index.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/searcher.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-backlinks">#backlinks</a>
+    
+    <li ><a href="#method-i-category_members">#category_members</a>
+    
+    <li ><a href="#method-i-create">#create</a>
+    
+    <li ><a href="#method-i-delete">#delete</a>
+    
+    <li ><a href="#method-i-edit">#edit</a>
+    
+    <li ><a href="#method-i-get">#get</a>
+    
+    <li ><a href="#method-i-get_undelete_token">#get_undelete_token</a>
+    
+    <li ><a href="#method-i-langlink_for_lang">#langlink_for_lang</a>
+    
+    <li ><a href="#method-i-langlinks">#langlinks</a>
+    
+    <li ><a href="#method-i-list">#list</a>
+    
+    <li ><a href="#method-i-move">#move</a>
+    
+    <li ><a href="#method-i-protect">#protect</a>
+    
+    <li ><a href="#method-i-redirect-3F">#redirect?</a>
+    
+    <li ><a href="#method-i-render">#render</a>
+    
+    <li ><a href="#method-i-review">#review</a>
+    
+    <li ><a href="#method-i-revision">#revision</a>
+    
+    <li ><a href="#method-i-undelete">#undelete</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-MediaWiki::Gateway::Pages">
+  <h1 id="module-MediaWiki::Gateway::Pages" class="module">
+    module MediaWiki::Gateway::Pages
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-backlinks" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">backlinks</span><span
+            class="method-args">(title, filter = 'all', options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a list of pages that link to a target page</p>
+<dl class="rdoc-list label-list"><dt>title
+<dd>
+<p>Link target page</p>
+</dd><dt>filter
+<dd>
+<p>&#39;all&#39; links (default), &#39;redirects&#39; only, or
+&#39;nonredirects&#39; (plain links only)</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns array of page titles (empty if no matches)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="backlinks-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 289</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">backlinks</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">filter</span> = <span class="ruby-string">&#39;all&#39;</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">iterate_query</span>(<span class="ruby-string">&#39;backlinks&#39;</span>, <span class="ruby-string">&#39;//bl&#39;</span>, <span class="ruby-string">&#39;title&#39;</span>, <span class="ruby-string">&#39;blcontinue&#39;</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;bltitle&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>,
+    <span class="ruby-string">&#39;blfilterredir&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">filter</span>,
+    <span class="ruby-string">&#39;bllimit&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:limit</span>]
+  ))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-category_members" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">category_members</span><span
+            class="method-args">(category, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a list of pages that are members of a category</p>
+<dl class="rdoc-list label-list"><dt>category
+<dd>
+<p>Name of the category</p>
+</dd><dt>options
+<dd>
+<p>Optional hash of additional options. See <a
+href="http://www.mediawiki.org/wiki/API:Categorymembers">www.mediawiki.org/wiki/API:Categorymembers</a></p>
+</dd></dl>
+
+<p>Returns array of page titles (empty if no matches)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="category_members-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 275</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">category_members</span>(<span class="ruby-identifier">category</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">iterate_query</span>(<span class="ruby-string">&#39;categorymembers&#39;</span>, <span class="ruby-string">&#39;//cm&#39;</span>, <span class="ruby-string">&#39;title&#39;</span>, <span class="ruby-string">&#39;cmcontinue&#39;</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;cmtitle&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">category</span>,
+    <span class="ruby-string">&#39;cmlimit&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:limit</span>]
+  ))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">(title, content, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a new page, or overwrite an existing one</p>
+<dl class="rdoc-list label-list"><dt>title
+<dd>
+<p>Page title to create or overwrite, string</p>
+</dd><dt>content
+<dd>
+<p>Content for the page, string</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Options:</p>
+<ul><li><dl class="rdoc-list label-list"><dt>:overwrite
+<dd>
+<p>Allow overwriting existing pages</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:summary
+<dd>
+<p>Edit summary for history, string</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:token
+<dd>
+<p>Use this existing edit token instead requesting a new one (useful for bulk
+loads)</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:minor
+<dd>
+<p>Mark this edit as “minor” if true, mark this edit as “major” if false,
+leave major/minor status by default if not specified</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:notminor
+<dd>
+<p>Mark this edit as “major” if true</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:bot
+<dd>
+<p>Set the bot parameter (see <a
+href="http://www.mediawiki.org/wiki/API:Edit#Parameters">www.mediawiki.org/wiki/API:Edit#Parameters</a>).
+Defaults to false.</p>
+</dd></dl>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">form_data</span> = {
+    <span class="ruby-string">&#39;action&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;edit&#39;</span>,
+    <span class="ruby-string">&#39;title&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>,
+    <span class="ruby-string">&#39;text&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">content</span>,
+    <span class="ruby-string">&#39;summary&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:summary</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span>,
+    <span class="ruby-string">&#39;token&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-string">&#39;edit&#39;</span>, <span class="ruby-identifier">title</span>)
+  }
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:bot</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:bot</span>]
+    <span class="ruby-identifier">form_data</span>.<span class="ruby-identifier">update</span>(<span class="ruby-string">&#39;bot&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;1&#39;</span>, <span class="ruby-string">&#39;assert&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;bot&#39;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;minor&#39;</span>]      = <span class="ruby-string">&#39;1&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:minor</span>]
+  <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;notminor&#39;</span>]   = <span class="ruby-string">&#39;1&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:minor</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:notminor</span>]
+  <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;createonly&#39;</span>] = <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:overwrite</span>]
+  <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;section&#39;</span>]    = <span class="ruby-identifier">options</span>[<span class="ruby-value">:section</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:section</span>]
+
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete</span><span
+            class="method-args">(title, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Delete one page. (MediaWiki API does not support deleting multiple pages at
+a time.)</p>
+<dl class="rdoc-list label-list"><dt>title
+<dd>
+<p>Title of page to delete</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 225</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;delete&#39;</span>,
+    <span class="ruby-string">&#39;title&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>,
+    <span class="ruby-string">&#39;token&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-string">&#39;delete&#39;</span>, <span class="ruby-identifier">title</span>)
+  ))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">(title, content, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Edit page</p>
+
+<p>Same options as create, but always overwrites existing pages (and creates
+them if they don&#39;t exist already).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">content</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">create</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">content</span>, { <span class="ruby-identifier">overwrite</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get</span><span
+            class="method-args">(page_title, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Fetch MediaWiki page in MediaWiki format.  Does not follow redirects.</p>
+<dl class="rdoc-list label-list"><dt>page_title
+<dd>
+<p>Page title to fetch</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns content of page as string, nil if the page does not exist.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">page_title</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">page</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;prop&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;revisions&#39;</span>,
+    <span class="ruby-string">&#39;rvprop&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;content&#39;</span>,
+    <span class="ruby-string">&#39;titles&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page_title</span>
+  )).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/pages/page&#39;</span>]
+
+  <span class="ruby-identifier">page</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;revisions/rev&#39;</span>].<span class="ruby-identifier">text</span> <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_page?</span>(<span class="ruby-identifier">page</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-langlink_for_lang" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">langlink_for_lang</span><span
+            class="method-args">(article_or_pageid, lang)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Convenience wrapper for <em>langlinks</em> returning the title in language
+<em>lang</em> (ISO code) for a given article of pageid, if it exists, via
+the interlanguage link</p>
+
+<p>Example:</p>
+
+<pre>langlink = mw.langlink_for_lang(&#39;Tycho Brahe&#39;, &#39;de&#39;)</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="langlink_for_lang-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 350</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">langlink_for_lang</span>(<span class="ruby-identifier">article_or_pageid</span>, <span class="ruby-identifier">lang</span>)
+  <span class="ruby-identifier">langlinks</span>(<span class="ruby-identifier">article_or_pageid</span>)[<span class="ruby-identifier">lang</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-langlinks" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">langlinks</span><span
+            class="method-args">(article_or_pageid, lllimit = 500, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get list of interlanguage links for given <a href="s">article</a>.  Follows
+redirects.  Returns a hash like { &#39;id&#39; =&gt; &#39;Yerusalem&#39;,
+&#39;en&#39; =&gt; &#39;Jerusalem&#39;, … }</p>
+
+<p><em>article_or_pageid</em> is the title or pageid of a single article
+<em>lllimit</em> is the maximum number of langlinks to return (defaults to
+500, the maximum) <em>options</em> is the hash of additional options</p>
+
+<p>Example:</p>
+
+<pre>langlinks = mw.langlinks(&#39;Jerusalem&#39;)</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="langlinks-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 320</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">langlinks</span>(<span class="ruby-identifier">article_or_pageid</span>, <span class="ruby-identifier">lllimit</span> = <span class="ruby-value">500</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">form_data</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;prop&#39;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;langlinks&#39;</span>,
+    <span class="ruby-string">&#39;lllimit&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lllimit</span>,
+    <span class="ruby-string">&#39;redirects&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+  )
+
+  <span class="ruby-identifier">form_data</span>[<span class="ruby-identifier">article_or_pageid</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">?</span>
+    <span class="ruby-string">&#39;pageids&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;titles&#39;</span>] = <span class="ruby-identifier">article_or_pageid</span>
+
+  <span class="ruby-identifier">xml</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_page?</span>(<span class="ruby-identifier">page</span> = <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/pages/page&#39;</span>])
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/redirects/r&#39;</span>]
+      <span class="ruby-comment"># We&#39;re dealing with the redirect here.</span>
+      <span class="ruby-identifier">langlinks</span>(<span class="ruby-identifier">page</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;pageid&#39;</span>].<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">lllimit</span>)
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">langl</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">page</span>, <span class="ruby-string">&#39;langlinks/ll&#39;</span>)
+      <span class="ruby-identifier">langl</span>.<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">ll</span>, <span class="ruby-identifier">links</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">links</span>[<span class="ruby-identifier">ll</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;lang&#39;</span>]] = <span class="ruby-identifier">ll</span>.<span class="ruby-identifier">children</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_s</span>
+      }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">list</span><span
+            class="method-args">(key, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get a list of matching page titles in a namespace</p>
+<dl class="rdoc-list label-list"><dt>key
+<dd>
+<p>Search key, matched as a prefix (^key.*).  May contain or equal a
+namespace, defaults to main (namespace 0) if none given.</p>
+</dd><dt>options
+<dd>
+<p>Optional hash of additional options, eg. { &#39;apfilterredir&#39; =&gt;
+&#39;nonredirects&#39; }.  See <a
+href="http://www.mediawiki.org/wiki/API:Allpages">www.mediawiki.org/wiki/API:Allpages</a></p>
+</dd></dl>
+
+<p>Returns array of page titles (empty if no matches)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="list-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 257</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">list</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">key</span>, <span class="ruby-identifier">namespace</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;:&#39;</span>, <span class="ruby-value">2</span>).<span class="ruby-identifier">reverse</span>
+  <span class="ruby-identifier">namespace</span> = <span class="ruby-identifier">namespaces_by_prefix</span>[<span class="ruby-identifier">namespace</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+
+  <span class="ruby-identifier">iterate_query</span>(<span class="ruby-string">&#39;allpages&#39;</span>, <span class="ruby-string">&#39;//p&#39;</span>, <span class="ruby-string">&#39;title&#39;</span>, <span class="ruby-string">&#39;apfrom&#39;</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;list&#39;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;allpages&#39;</span>,
+    <span class="ruby-string">&#39;apprefix&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">key</span>,
+    <span class="ruby-string">&#39;apnamespace&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">namespace</span>,
+    <span class="ruby-string">&#39;aplimit&#39;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:limit</span>]
+  ))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-move" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">move</span><span
+            class="method-args">(from, to, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Move a page to a new title</p>
+<dl class="rdoc-list label-list"><dt>from
+<dd>
+<p>Old page name</p>
+</dd><dt>to
+<dd>
+<p>New page name</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Options:</p>
+<ul><li><dl class="rdoc-list label-list"><dt>:movesubpages
+<dd>
+<p>Move associated subpages</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:movetalk
+<dd>
+<p>Move associated talkpages</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:noredirect
+<dd>
+<p>Do not create a redirect page from old name.  Requires the
+&#39;suppressredirect&#39; user right, otherwise MW will silently ignore
+the option and create the redirect anyway.</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:reason
+<dd>
+<p>Reason for move</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:watch
+<dd>
+<p>Add page and any redirect to watchlist</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:unwatch
+<dd>
+<p>Remove page and any redirect from watchlist</p>
+</dd></dl>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="move-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 210</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">move</span>(<span class="ruby-identifier">from</span>, <span class="ruby-identifier">to</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">validate_options</span>(<span class="ruby-identifier">options</span>, <span class="ruby-node">%w[movesubpages movetalk noredirect reason watch unwatch]</span>)
+
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;move&#39;</span>,
+    <span class="ruby-string">&#39;from&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">from</span>,
+    <span class="ruby-string">&#39;to&#39;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">to</span>,
+    <span class="ruby-string">&#39;token&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-string">&#39;move&#39;</span>, <span class="ruby-identifier">from</span>)
+  ))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-protect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">protect</span><span
+            class="method-args">(title, protections, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Protect/unprotect a page</p>
+
+<p>Arguments:</p>
+<ul><li><dl class="rdoc-list label-list"><dt>title
+<dd>
+<p>Page title to protect, string</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>protections
+<dd>
+<p>Protections to apply, hash or array of hashes</p>
+</dd></dl>
+
+<p>Protections:</p>
+<ul><li><dl class="rdoc-list label-list"><dt>:action
+<dd>
+<p>(required) The action to protect, string</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:group
+<dd>
+<p>(required) The group allowed to perform the action, string</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:expiry
+<dd>
+<p>The protection expiry as a GNU timestamp, string</p>
+</dd></dl>
+</li></ul>
+</li><li><dl class="rdoc-list label-list"><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Options:</p>
+<ul><li><dl class="rdoc-list label-list"><dt>:cascade
+<dd>
+<p>Protect pages included in this page, boolean</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:reason
+<dd>
+<p>Reason for protection, string</p>
+</dd></dl>
+</li></ul>
+</li></ul>
+
+<p>Examples:</p>
+<ol><li>
+<p>mw.protect(&#39;Main Page&#39;, {:action =&gt; &#39;edit&#39;, :group =&gt;
+&#39;all&#39;}, {:cascade =&gt; true})</p>
+</li><li>
+<p>prt = [{:action =&gt; &#39;move&#39;, :group =&gt; &#39;sysop&#39;, :expiry
+=&gt; &#39;never&#39;},</p>
+
+<pre class="ruby">{:<span class="ruby-identifier">action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;edit&#39;</span>, :<span class="ruby-identifier">group</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;autoconfirmed&#39;</span>, :<span class="ruby-identifier">expiry</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;next Monday 16:04:57&#39;</span>}]
+</pre>
+
+<p>mw.protect(&#39;Main Page&#39;, prt, {:reason =&gt; &#39;awesomeness&#39;})</p>
+</li></ol>
+          
+          
+
+          
+          <div class="method-source-code" id="protect-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 145</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">protect</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">protections</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">protections</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Array</span>
+      <span class="ruby-comment"># ok</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">Hash</span>
+      <span class="ruby-identifier">protections</span> = [<span class="ruby-identifier">protections</span>]
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Invalid type &#39;#{protections.class}&#39; for protections&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">valid_prt_options</span>    = <span class="ruby-node">%w[action group expiry]</span>
+  <span class="ruby-identifier">required_prt_options</span> = <span class="ruby-node">%w[action group]</span>
+
+  <span class="ruby-identifier">p</span>, <span class="ruby-identifier">e</span> = [], []
+
+  <span class="ruby-identifier">protections</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">prt</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">existing_prt_options</span> = []
+
+    <span class="ruby-identifier">prt</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_prt_options</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opt</span>.<span class="ruby-identifier">to_s</span>)
+        <span class="ruby-identifier">existing_prt_options</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Unknown option &#39;#{opt}&#39; for protections&quot;</span>
+      <span class="ruby-keyword">end</span>
+    }
+
+    <span class="ruby-identifier">required_prt_options</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">existing_prt_options</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opt</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Missing required option &#39;#{opt}&#39; for protections&quot;</span>
+      <span class="ruby-keyword">end</span>
+    }
+
+    <span class="ruby-identifier">p</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{prt[:action]}=#{prt[:group]}&quot;</span>
+    <span class="ruby-identifier">e</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">prt</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value">:expiry</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">prt</span>[<span class="ruby-value">:expiry</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;never&#39;</span>)
+  }
+
+  <span class="ruby-identifier">validate_options</span>(<span class="ruby-identifier">options</span>, <span class="ruby-node">%w[cascade reason]</span>)
+
+  <span class="ruby-identifier">form_data</span> = {
+    <span class="ruby-string">&#39;action&#39;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;protect&#39;</span>,
+    <span class="ruby-string">&#39;title&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>,
+    <span class="ruby-string">&#39;token&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-string">&#39;protect&#39;</span>, <span class="ruby-identifier">title</span>),
+    <span class="ruby-string">&#39;protections&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;|&#39;</span>),
+    <span class="ruby-string">&#39;expiry&#39;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;|&#39;</span>)
+  }
+
+  <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;cascade&#39;</span>] = <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:cascade</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;reason&#39;</span>]  = <span class="ruby-identifier">options</span>[<span class="ruby-value">:reason</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:reason</span>]
+
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-redirect-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">redirect?</span><span
+            class="method-args">(page_title)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks if page is a redirect.</p>
+<dl class="rdoc-list label-list"><dt>page_title
+<dd>
+<p>Page title to fetch</p>
+</dd></dl>
+
+<p>Returns true if the page is a redirect, false if it is not or the page does
+not exist.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="redirect-3F-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 302</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">redirect?</span>(<span class="ruby-identifier">page_title</span>)
+  <span class="ruby-identifier">page</span> = <span class="ruby-identifier">make_api_request</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;prop&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;info&#39;</span>,
+    <span class="ruby-string">&#39;titles&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page_title</span>
+  ).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/pages/page&#39;</span>]
+
+  <span class="ruby-operator">!</span><span class="ruby-operator">!</span>(<span class="ruby-identifier">valid_page?</span>(<span class="ruby-identifier">page</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;redirect&#39;</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-render" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">render</span><span
+            class="method-args">(page_title, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Render a MediaWiki page as HTML</p>
+<dl class="rdoc-list label-list"><dt>page_title
+<dd>
+<p>Page title to fetch</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Options:</p>
+<ul><li><dl class="rdoc-list label-list"><dt>:linkbase
+<dd>
+<p>supply a String to prefix all internal (relative) links with.
+&#39;/wiki/&#39; is assumed to be the base of a relative link</p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:noeditsections
+<dd>
+<p>strips all edit-links if set to <code>true</code></p>
+</dd></dl>
+</li><li><dl class="rdoc-list label-list"><dt>:noimages
+<dd>
+<p>strips all <code>img</code> tags from the rendered text if set to
+<code>true</code></p>
+</dd></dl>
+</li></ul>
+
+<p>Returns rendered page as string, or nil if the page does not exist</p>
+          
+          
+
+          
+          <div class="method-source-code" id="render-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">render</span>(<span class="ruby-identifier">page_title</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">form_data</span> = { <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;parse&#39;</span>, <span class="ruby-string">&#39;page&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page_title</span> }
+
+  <span class="ruby-identifier">validate_options</span>(<span class="ruby-identifier">options</span>, <span class="ruby-node">%w[linkbase noeditsections noimages]</span>)
+
+  <span class="ruby-identifier">rendered</span>, <span class="ruby-identifier">parsed</span> = <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;parse&#39;</span>]
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">parsed</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;revid&#39;</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;0&#39;</span>
+    <span class="ruby-identifier">rendered</span> = <span class="ruby-identifier">parsed</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;text&#39;</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&lt;!--(.|\s)*?--&gt;/</span>, <span class="ruby-string">&#39;&#39;</span>)
+
+    <span class="ruby-comment"># OPTIMIZE: unifiy the keys in +options+ like symbolize_keys! but w/o</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">linkbase</span> = <span class="ruby-identifier">options</span>[<span class="ruby-string">&#39;linkbase&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:linkbase</span>]
+      <span class="ruby-identifier">rendered</span> = <span class="ruby-identifier">rendered</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\shref=&quot;\/wiki\/([\w\(\)\-\.%:,]*)&quot;/</span>, <span class="ruby-string">&#39; href=&quot;&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">linkbase</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/wiki/\1&quot;&#39;</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-string">&#39;noeditsections&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:noeditsections</span>]
+      <span class="ruby-identifier">rendered</span> = <span class="ruby-identifier">rendered</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&lt;span class=&quot;editsection&quot;&gt;\[.+\]&lt;\/span&gt;/</span>, <span class="ruby-string">&#39;&#39;</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-string">&#39;noimages&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:noimages</span>]
+      <span class="ruby-identifier">rendered</span> = <span class="ruby-identifier">rendered</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&lt;img.*\/&gt;/</span>, <span class="ruby-string">&#39;&#39;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">rendered</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-review" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">review</span><span
+            class="method-args">(title, flags, comment = 'Reviewed by MediaWiki::Gateway', options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Review current revision of an article (requires FlaggedRevisions extension,
+see <a
+href="http://www.mediawiki.org/wiki/Extension:FlaggedRevs">www.mediawiki.org/wiki/Extension:FlaggedRevs</a>)</p>
+<dl class="rdoc-list label-list"><dt>title
+<dd>
+<p>Title of article to review</p>
+</dd><dt>flags
+<dd>
+<p>Hash of flags and values to set, eg. { &#39;accuracy&#39; =&gt;
+&#39;1&#39;, &#39;depth&#39; =&gt; &#39;2&#39; }</p>
+</dd><dt>comment
+<dd>
+<p>Comment to add to review (optional)</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="review-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 360</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">review</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">flags</span>, <span class="ruby-identifier">comment</span> = <span class="ruby-string">&#39;Reviewed by MediaWiki::Gateway&#39;</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">APIError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;missingtitle&#39;</span>, <span class="ruby-node">&quot;Article #{title} not found&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">revid</span> = <span class="ruby-identifier">revision</span>(<span class="ruby-identifier">title</span>)
+
+  <span class="ruby-identifier">form_data</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;review&#39;</span>,
+    <span class="ruby-string">&#39;revid&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">revid</span>,
+    <span class="ruby-string">&#39;token&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-string">&#39;edit&#39;</span>, <span class="ruby-identifier">title</span>),
+    <span class="ruby-string">&#39;comment&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">comment</span>
+  )
+
+  <span class="ruby-identifier">flags</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">form_data</span>[<span class="ruby-node">&quot;flag_#{k}&quot;</span>] = <span class="ruby-identifier">v</span> }
+
+  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-revision" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">revision</span><span
+            class="method-args">(page_title, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Fetch latest revision ID of a MediaWiki page.  Does not follow redirects.</p>
+<dl class="rdoc-list label-list"><dt>page_title
+<dd>
+<p>Page title to fetch</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns revision ID as a string, nil if the page does not exist.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="revision-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">revision</span>(<span class="ruby-identifier">page_title</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">page</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-string">&#39;action&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;prop&#39;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;revisions&#39;</span>,
+    <span class="ruby-string">&#39;rvprop&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;ids&#39;</span>,
+    <span class="ruby-string">&#39;rvlimit&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+    <span class="ruby-string">&#39;titles&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page_title</span>
+  )).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/pages/page&#39;</span>]
+
+  <span class="ruby-identifier">page</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;revisions/rev&#39;</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;revid&#39;</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_page?</span>(<span class="ruby-identifier">page</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-undelete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">undelete</span><span
+            class="method-args">(title, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Undelete all revisions of one page.</p>
+<dl class="rdoc-list label-list"><dt>title
+<dd>
+<p>Title of page to undelete</p>
+</dd><dt>options
+<dd>
+<p>Hash of additional options</p>
+</dd></dl>
+
+<p>Returns number of revisions undeleted, or zero if nothing to undelete</p>
+          
+          
+
+          
+          <div class="method-source-code" id="undelete-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 239</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">undelete</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">token</span> = <span class="ruby-identifier">get_undelete_token</span>(<span class="ruby-identifier">title</span>)
+    <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+      <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;undelete&#39;</span>,
+      <span class="ruby-string">&#39;title&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>,
+      <span class="ruby-string">&#39;token&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">token</span>
+    )).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;undelete&#39;</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;revisions&#39;</span>].<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-value">0</span> <span class="ruby-comment"># No revisions to undelete</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-get_undelete_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_undelete_token</span><span
+            class="method-args">(page_titles)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_undelete_token-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/gateway/pages.rb, line 377</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_undelete_token</span>(<span class="ruby-identifier">page_titles</span>)
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(
+    <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
+    <span class="ruby-string">&#39;list&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;deletedrevs&#39;</span>,
+    <span class="ruby-string">&#39;prop&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;info&#39;</span>,
+    <span class="ruby-string">&#39;drprop&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;token&#39;</span>,
+    <span class="ruby-string">&#39;titles&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page_titles</span>
+  ).<span class="ruby-identifier">first</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">res</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/deletedrevs/page&#39;</span>]
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">token</span> = <span class="ruby-identifier">res</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/deletedrevs/page&#39;</span>].<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;token&#39;</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Unauthorized</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;User is not permitted to perform this operation: #{type}&quot;</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">token</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
