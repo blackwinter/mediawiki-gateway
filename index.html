@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>mediawiki-gateway Application documentation (v0.6.2)</title>
+<title>mediawiki-gateway Application documentation (v0.7.0.rc1)</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -76,9 +76,21 @@
   
     <li><a href="./MediaWiki/APIError.html">MediaWiki::APIError</a>
   
-    <li><a href="./MediaWiki/Config.html">MediaWiki::Config</a>
-  
     <li><a href="./MediaWiki/Exception.html">MediaWiki::Exception</a>
+  
+    <li><a href="./MediaWiki/FakeWiki.html">MediaWiki::FakeWiki</a>
+  
+    <li><a href="./MediaWiki/FakeWiki/ApiError.html">MediaWiki::FakeWiki::ApiError</a>
+  
+    <li><a href="./MediaWiki/FakeWiki/ApiPages.html">MediaWiki::FakeWiki::ApiPages</a>
+  
+    <li><a href="./MediaWiki/FakeWiki/ApiToken.html">MediaWiki::FakeWiki::ApiToken</a>
+  
+    <li><a href="./MediaWiki/FakeWiki/App.html">MediaWiki::FakeWiki::App</a>
+  
+    <li><a href="./MediaWiki/FakeWiki/RSpecAdapter.html">MediaWiki::FakeWiki::RSpecAdapter</a>
+  
+    <li><a href="./MediaWiki/FakeWiki/WikiPage.html">MediaWiki::FakeWiki::WikiPage</a>
   
     <li><a href="./MediaWiki/Gateway.html">MediaWiki::Gateway</a>
   
@@ -93,6 +105,8 @@
     <li><a href="./MediaWiki/Gateway/Users.html">MediaWiki::Gateway::Users</a>
   
     <li><a href="./MediaWiki/Unauthorized.html">MediaWiki::Unauthorized</a>
+  
+    <li><a href="./MediaWiki/Utils.html">MediaWiki::Utils</a>
   
     <li><a href="./MediaWiki/Version.html">MediaWiki::Version</a>
   
@@ -133,6 +147,25 @@ href="http://rubydoc.info/gems/mediawiki-gateway">rubydoc.info/gems/mediawiki-ga
 <p>Git: <a
 href="https://github.com/jpatokal/mediawiki-gateway">github.com/jpatokal/mediawiki-gateway</a></p>
 
+<p>Travis CI: <a
+href="https://travis-ci.org/jpatokal/mediawiki-gateway">travis-ci.org/jpatokal/mediawiki-gateway</a></p>
+
+<h2 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>To install <a href="MediaWiki/Gateway.html">MediaWiki::Gateway</a>, execute
+the command:</p>
+
+<pre>$ gem install mediawiki-gateway</pre>
+
+<p>Or add it to your application&#39;s <code>Gemfile</code>:</p>
+
+<pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-string">&#39;mediawiki-gateway&#39;</span>
+</pre>
+
+<p>and then execute the command:</p>
+
+<pre>$ bundle</pre>
+
 <h2 id="label-Example">Example<span><a href="#label-Example">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Simple page creation script:</p>
@@ -142,6 +175,31 @@ href="https://github.com/jpatokal/mediawiki-gateway">github.com/jpatokal/mediawi
 <span class="ruby-identifier">mw</span>.<span class="ruby-identifier">login</span>(<span class="ruby-string">&#39;RubyBot&#39;</span>, <span class="ruby-string">&#39;pa$$w0rd&#39;</span>)
 <span class="ruby-identifier">mw</span>.<span class="ruby-identifier">create</span>(<span class="ruby-string">&#39;PageTitle&#39;</span>, <span class="ruby-string">&#39;Hello world!&#39;</span>, <span class="ruby-identifier">summary</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;My first page&#39;</span>)
 </pre>
+
+<h2 id="label-Changing+the+default+User-Agent">Changing the default User-Agent<span><a href="#label-Changing+the+default+User-Agent">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>In order to comply with Wikimedia&#39;s <a
+href="https://meta.wikimedia.org/wiki/User-Agent_policy">User-Agent
+policy</a>, you are strongly advised to provide your own User-Agent header
+when accessing Wikimedia websites. The User-Agent information should
+include the name and version of your bot as well as a URL (homepage,
+repository) and contact e-mail.</p>
+
+<p>You can set the default User-Agent globally:</p>
+
+<pre class="ruby"><span class="ruby-constant">MediaWiki</span><span class="ruby-operator">::</span><span class="ruby-constant">Gateway</span>.<span class="ruby-identifier">default_user_agent</span> = <span class="ruby-string">&#39;MyCoolTool/1.1 (http://example.com/MyCoolTool/; MyCoolTool@example.com)&#39;</span>
+</pre>
+
+<p>You can also set it on an instance by instance basis, overriding the global
+default:</p>
+
+<pre class="ruby"><span class="ruby-identifier">mw</span> = <span class="ruby-constant">MediaWiki</span><span class="ruby-operator">::</span><span class="ruby-constant">Gateway</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;http://my-wiki.example/w/api.php&#39;</span>, <span class="ruby-identifier">user_agent</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;MyCoolTool/1.1 (http://example.com/MyCoolTool/; MyCoolTool@example.com)&#39;</span>)
+</pre>
+
+<p>You only need to provide the part that identifies your own bot, an
+additional part denoting that your bot is based on <a
+href="MediaWiki/Gateway.html">MediaWiki::Gateway</a> is appended
+automatically.</p>
 
 <h2 id="label-Development+environment">Development environment<span><a href="#label-Development+environment">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
@@ -176,9 +234,14 @@ unlikely to make them materialize out of thin air.</p>
 href="https://github.com/blackwinter">Jens Wille</a>. If you&#39;d be
 seriously interested in joining as an active maintainer, drop us a line!</p>
 
-<p>Thanks to: * John Carney, Mike Williams, Daniel Heath and the rest of the
-Lonely Planet Atlas team. * Github users for code contributions, see <a
+<p>Thanks to:</p>
+<ul><li>
+<p>John Carney, Mike Williams, Daniel Heath and the rest of the Lonely Planet
+Atlas team.</p>
+</li><li>
+<p>Github users for code contributions, see <a
 href="https://github.com/jpatokal/mediawiki-gateway/pulls">github.com/jpatokal/mediawiki-gateway/pulls</a></p>
+</li></ul>
 </main>
 
 

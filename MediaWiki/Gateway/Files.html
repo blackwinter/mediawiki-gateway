@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>module MediaWiki::Gateway::Files - mediawiki-gateway Application documentation (v0.6.2)</title>
+<title>module MediaWiki::Gateway::Files - mediawiki-gateway Application documentation (v0.7.0.rc1)</title>
 
 <link href="../../fonts.css" rel="stylesheet">
 <link href="../../rdoc.css" rel="stylesheet">
@@ -214,7 +214,7 @@ that responds to join).</p>
     <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;pageids&#39;</span>] = <span class="ruby-identifier">file_name_or_page_id</span> <span class="ruby-operator">:</span>
     <span class="ruby-identifier">form_data</span>[<span class="ruby-string">&#39;titles&#39;</span>]  = <span class="ruby-node">&quot;File:#{file_name_or_page_id}&quot;</span>
 
-  <span class="ruby-identifier">xml</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">xml</span> = <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">form_data</span>)
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_page?</span>(<span class="ruby-identifier">page</span> = <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/pages/page&#39;</span>])
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/redirects/r&#39;</span>]
@@ -277,7 +277,7 @@ that responds to join).</p>
   <span class="ruby-identifier">form_data</span>[<span class="ruby-identifier">article_or_pageid</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">?</span>
     <span class="ruby-string">&#39;pageids&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;titles&#39;</span>] = <span class="ruby-identifier">article_or_pageid</span>
 
-  <span class="ruby-identifier">xml</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-identifier">xml</span> = <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">form_data</span>)
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_page?</span>(<span class="ruby-identifier">page</span> = <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/pages/page&#39;</span>])
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query/redirects/r&#39;</span>]
@@ -402,7 +402,7 @@ Also used as &#39;text&#39; if neither it or :description is specified.</p>
       <span class="ruby-string">&quot;One of the &#39;file&#39;, &#39;url&#39; or &#39;sessionkey&#39; options must be specified!&quot;</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+  <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
     <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;upload&#39;</span>,
     <span class="ruby-string">&#39;token&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-string">&#39;edit&#39;</span>, <span class="ruby-identifier">options</span>[<span class="ruby-string">&#39;filename&#39;</span>])
   ))

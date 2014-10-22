@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class MediaWiki::FakeWiki::App - mediawiki-gateway Application documentation (v0.7.0.rc1)</title>
+
+<link href="../../fonts.css" rel="stylesheet">
+<link href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/navigation.js"></script>
+<script src="../../js/search_index.js"></script>
+<script src="../../js/search.js"></script>
+<script src="../../js/searcher.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Sinatra::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-action">#action</a>
+    
+    <li ><a href="#method-i-add_user">#add_user</a>
+    
+    <li ><a href="#method-i-allpages">#allpages</a>
+    
+    <li ><a href="#method-i-api_error_response">#api_error_response</a>
+    
+    <li ><a href="#method-i-api_response">#api_response</a>
+    
+    <li ><a href="#method-i-createaccount">#createaccount</a>
+    
+    <li ><a href="#method-i-delete">#delete</a>
+    
+    <li ><a href="#method-i-edit">#edit</a>
+    
+    <li ><a href="#method-i-export">#export</a>
+    
+    <li ><a href="#method-i-extensions">#extensions</a>
+    
+    <li ><a href="#method-i-get_info">#get_info</a>
+    
+    <li ><a href="#method-i-get_revisions">#get_revisions</a>
+    
+    <li ><a href="#method-i-get_token">#get_token</a>
+    
+    <li ><a href="#method-i-get_undelete_token">#get_undelete_token</a>
+    
+    <li ><a href="#method-i-get_userrights_token">#get_userrights_token</a>
+    
+    <li ><a href="#method-i-handle_request">#handle_request</a>
+    
+    <li ><a href="#method-i-import">#import</a>
+    
+    <li ><a href="#method-i-list">#list</a>
+    
+    <li ><a href="#method-i-logged_in">#logged_in</a>
+    
+    <li ><a href="#method-i-login">#login</a>
+    
+    <li ><a href="#method-i-meta">#meta</a>
+    
+    <li ><a href="#method-i-namespaces">#namespaces</a>
+    
+    <li ><a href="#method-i-next_id">#next_id</a>
+    
+    <li ><a href="#method-i-options">#options</a>
+    
+    <li ><a href="#method-i-parse">#parse</a>
+    
+    <li ><a href="#method-i-prop">#prop</a>
+    
+    <li ><a href="#method-i-query">#query</a>
+    
+    <li ><a href="#method-i-query_pages">#query_pages</a>
+    
+    <li ><a href="#method-i-requested_page_titles">#requested_page_titles</a>
+    
+    <li ><a href="#method-i-reset">#reset</a>
+    
+    <li ><a href="#method-i-search">#search</a>
+    
+    <li ><a href="#method-i-siteinfo">#siteinfo</a>
+    
+    <li ><a href="#method-i-tokens">#tokens</a>
+    
+    <li ><a href="#method-i-undelete">#undelete</a>
+    
+    <li ><a href="#method-i-upload">#upload</a>
+    
+    <li ><a href="#method-i-user">#user</a>
+    
+    <li ><a href="#method-i-userrights">#userrights</a>
+    
+    <li ><a href="#method-i-validate_page_overwrite">#validate_page_overwrite</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-MediaWiki::FakeWiki::App">
+  <h1 id="class-MediaWiki::FakeWiki::App" class="class">
+    class MediaWiki::FakeWiki::App
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+  <span class="ruby-identifier">reset</span>
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-action" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">action</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="action-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">action</span>
+  [<span class="ruby-value">:userrights</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">action_type</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">action_type</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">halt</span>(<span class="ruby-value">404</span>, <span class="ruby-string">&quot;Page not found&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_user</span><span
+            class="method-args">(username, password, domain, is_admin)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="add_user-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_user</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">domain</span>, <span class="ruby-identifier">is_admin</span>)
+  <span class="ruby-ivar">@users</span>[<span class="ruby-identifier">username</span>] = {
+    <span class="ruby-value">:userid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">next_id</span>,
+    <span class="ruby-value">:username</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span>,
+    <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">password</span>,
+    <span class="ruby-value">:domain</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">domain</span>,
+    <span class="ruby-value">:is_admin</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">is_admin</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-allpages" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">allpages</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="allpages-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 227</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">allpages</span>
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">query</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">allpages</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">prefix</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:apprefix</span>]
+        <span class="ruby-identifier">namespace</span> = <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">namespaces_by_id</span>[<span class="ruby-identifier">params</span>[<span class="ruby-value">:apnamespace</span>].<span class="ruby-identifier">to_i</span>]
+        <span class="ruby-identifier">prefix</span> = <span class="ruby-node">&quot;#{namespace}:#{prefix}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">list</span>(<span class="ruby-identifier">prefix</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">p</span>(<span class="ruby-keyword">nil</span>, { <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span>[<span class="ruby-value">:title</span>], <span class="ruby-value">:ns</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span>[<span class="ruby-value">:namespace</span>], <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span>[<span class="ruby-value">:pageid</span>] })
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-api_error_response" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">api_error_response</span><span
+            class="method-args">(code, info)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="api_error_response-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 308</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">api_error_response</span>(<span class="ruby-identifier">code</span>, <span class="ruby-identifier">info</span>)
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">error</span>(<span class="ruby-keyword">nil</span>,
+            <span class="ruby-value">:code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">code</span>,
+            <span class="ruby-value">:info</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">info</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-api_response" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">api_response</span><span
+            class="method-args">(api_attr = {}, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="api_response-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 302</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">api_response</span>(<span class="ruby-identifier">api_attr</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">api</span>(<span class="ruby-identifier">api_attr</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">to_xml</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-createaccount" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">createaccount</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="createaccount-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 436</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">createaccount</span>
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">request</span>(<span class="ruby-identifier">user</span>)
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:token</span>].<span class="ruby-identifier">empty?</span>
+      <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">validate_admin</span>
+      <span class="ruby-identifier">add_user</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>], <span class="ruby-string">&#39;local&#39;</span>, <span class="ruby-keyword">false</span>)
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">createaccount</span>(<span class="ruby-value">:token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">createusertoken</span>, <span class="ruby-value">:userid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@users</span>.<span class="ruby-identifier">length</span>, <span class="ruby-value">:username</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>], <span class="ruby-value">:result</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;success&#39;</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">createaccount</span>(<span class="ruby-value">:token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">createusertoken</span>, <span class="ruby-value">:result</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;needtoken&#39;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>
+  <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">validate_admin</span>
+
+  <span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ApiError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;missingtitle&quot;</span>, <span class="ruby-string">&quot;The page you requested doesn&#39;t exist&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">title</span>)
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">title</span>)
+
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-keyword">nil</span>, {<span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>, <span class="ruby-value">:reason</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Default reason&quot;</span>})
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">validate</span>
+
+  <span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
+  <span class="ruby-identifier">current_page</span> = <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">title</span>)
+  <span class="ruby-identifier">validate_page_overwrite</span>(<span class="ruby-identifier">current_page</span>)
+
+  <span class="ruby-identifier">new_page</span> = <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:text</span>])
+  <span class="ruby-identifier">page_info</span> = {<span class="ruby-value">:result</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Success&quot;</span>, <span class="ruby-value">:pageid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">new_page</span>[<span class="ruby-value">:pageid</span>], <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">new_page</span>[<span class="ruby-value">:title</span>], <span class="ruby-value">:newrevid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">new_page</span>[<span class="ruby-value">:pageid</span>]}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_page</span>
+    <span class="ruby-identifier">page_info</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-value">:oldrevid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_page</span>[<span class="ruby-value">:pageid</span>])
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">page_info</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-value">:new</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>, <span class="ruby-value">:oldrevid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">edit</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">page_info</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-export" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">export</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="export-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">export</span>
+  <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">mediawiki</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">requested_page_titles</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">requested_title</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">page</span> = <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">requested_title</span>)
+        <span class="ruby-identifier">_</span>.<span class="ruby-identifier">page</span> <span class="ruby-keyword">do</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">title</span>(<span class="ruby-identifier">page</span>[<span class="ruby-value">:title</span>])
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">id</span>(<span class="ruby-identifier">page</span>[<span class="ruby-value">:pageid</span>])
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">revision</span> <span class="ruby-keyword">do</span>
+            <span class="ruby-identifier">_</span>.<span class="ruby-identifier">id</span>(<span class="ruby-identifier">page</span>[<span class="ruby-value">:pageid</span>])
+            <span class="ruby-identifier">_</span>.<span class="ruby-identifier">text!</span>(<span class="ruby-identifier">page</span>[<span class="ruby-value">:content</span>])
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">to_xml</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-extensions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">extensions</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="extensions-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 288</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extensions</span>
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">query</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">extensions</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-ivar">@extensions</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">attr</span> = { <span class="ruby-value">:version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">version</span> }
+          <span class="ruby-identifier">attr</span>[<span class="ruby-value">:name</span>] = <span class="ruby-identifier">name</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">ext</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">attr</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_info</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_info-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 328</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_info</span>
+  <span class="ruby-identifier">query_pages</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">title</span>, <span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">attributes</span> = { <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>, <span class="ruby-value">:ns</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;0&#39;</span>}
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:missing</span>] = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:redirect</span>] = <span class="ruby-string">&quot;&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">page</span>[<span class="ruby-value">:redirect</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">page</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">attributes</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_revisions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_revisions</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_revisions-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 340</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_revisions</span>
+  <span class="ruby-identifier">query_pages</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">title</span>, <span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">page</span>(<span class="ruby-keyword">nil</span>, { <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>, <span class="ruby-value">:ns</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;0&#39;</span>, <span class="ruby-value">:missing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span> })
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">page</span> = <span class="ruby-identifier">page</span>.<span class="ruby-identifier">dup</span>
+      <span class="ruby-identifier">content</span> = <span class="ruby-identifier">page</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:content</span>)
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">page</span>(<span class="ruby-identifier">page</span>.<span class="ruby-identifier">merge</span>({ <span class="ruby-value">:ns</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> })) <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">_</span>.<span class="ruby-identifier">revisions</span> <span class="ruby-keyword">do</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">rev</span>(<span class="ruby-identifier">content</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_token</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_token-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 373</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_token</span>
+  <span class="ruby-identifier">token_str</span> = <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">request</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">query_pages</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">title</span>, <span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">page</span> = <span class="ruby-identifier">page</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">dup</span> <span class="ruby-operator">:</span> {}
+    <span class="ruby-identifier">page</span>[<span class="ruby-identifier">params</span>[<span class="ruby-value">:intoken</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot;token&quot;</span>] = <span class="ruby-identifier">token_str</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">token_str</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">page</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">page</span>.<span class="ruby-identifier">merge</span>({ <span class="ruby-value">:ns</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> }))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_undelete_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_undelete_token</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_undelete_token-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 382</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_undelete_token</span>
+  <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">set_type</span> <span class="ruby-string">&#39;undelete&#39;</span>
+  <span class="ruby-identifier">token_str</span> = <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">request</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">query</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">deletedrevs</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">requested_page_titles</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">title</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span> <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">title</span>) }.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">title</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">page</span>(<span class="ruby-keyword">nil</span>, { <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>, <span class="ruby-value">:token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">token_str</span> })
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_userrights_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_userrights_token</span><span
+            class="method-args">(username)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_userrights_token-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 396</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_userrights_token</span>(<span class="ruby-identifier">username</span>)
+  <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">set_type</span> <span class="ruby-string">&#39;userrights&#39;</span>
+  <span class="ruby-identifier">token_str</span> = <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">request</span>(<span class="ruby-identifier">user</span>)
+
+  <span class="ruby-identifier">user_to_manage</span> = <span class="ruby-ivar">@users</span>[<span class="ruby-identifier">username</span>]
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_to_manage</span>
+    <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">query</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">_</span>.<span class="ruby-identifier">users</span> <span class="ruby-keyword">do</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">user</span>(<span class="ruby-keyword">nil</span>, { <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_to_manage</span>[<span class="ruby-value">:username</span>], <span class="ruby-value">:userrightstoken</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">token_str</span> })
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">error</span>(<span class="ruby-keyword">nil</span>, { <span class="ruby-value">:code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;nosuchuser&#39;</span>, <span class="ruby-value">:info</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;The user &#39;#{params[:ususer].to_s}&#39; does not exist&quot;</span>} )
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-handle_request" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_request</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="handle_request-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">handle_request</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">halt</span>(<span class="ruby-value">503</span>, <span class="ruby-string">&quot;Maxlag exceeded&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:maxlag</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+
+    <span class="ruby-ivar">@token</span> = <span class="ruby-constant">ApiToken</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
+    <span class="ruby-identifier">action</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:action</span>]
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">action</span>)
+      <span class="ruby-identifier">content_type</span> <span class="ruby-string">&quot;application/xml&quot;</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">action</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">halt</span>(<span class="ruby-value">404</span>, <span class="ruby-string">&quot;Page not found&quot;</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ApiError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">api_error_response</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">code</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-import" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">import</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="import-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">import</span>
+  <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">validate_admin</span>
+
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">import</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">page</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Main Page&quot;</span>, <span class="ruby-value">:ns</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-value">:revisions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">page</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Template:Header&quot;</span>, <span class="ruby-value">:ns</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>, <span class="ruby-value">:revisions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">list</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="list-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 213</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">list</span>
+  <span class="ruby-identifier">list_type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:list</span>].<span class="ruby-identifier">to_sym</span>
+
+  <span class="ruby-comment"># api.php?action=query&amp;list=users&amp;ususers=Bob&amp;ustoken=userrights</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">list_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:users</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ustoken</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:ususers</span>]
+    <span class="ruby-comment"># This &quot;list&quot; is actually a request for a user rights token</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_userrights_token</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:ususers</span>])
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># This is a real list</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">list_type</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">list_type</span>)
+  <span class="ruby-identifier">halt</span>(<span class="ruby-value">404</span>, <span class="ruby-string">&quot;Page not found&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-logged_in" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logged_in</span><span
+            class="method-args">(username)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="logged_in-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">logged_in</span>(<span class="ruby-identifier">username</span>)
+  <span class="ruby-ivar">@logged_in_users</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">username</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-login" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">login</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="login-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 417</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-ivar">@users</span>[<span class="ruby-identifier">params</span>[<span class="ruby-value">:lgname</span>]]
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>[<span class="ruby-value">:domain</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lgdomain</span>]
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:lgpassword</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">user</span>[<span class="ruby-value">:password</span>]
+      <span class="ruby-ivar">@logged_in_users</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">user</span>[<span class="ruby-value">:username</span>]
+      <span class="ruby-identifier">response</span>.<span class="ruby-identifier">set_cookie</span>(<span class="ruby-string">&#39;login&#39;</span>, <span class="ruby-identifier">user</span>[<span class="ruby-value">:username</span>])
+      <span class="ruby-identifier">result</span> = { <span class="ruby-value">:result</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Success&quot;</span>, <span class="ruby-value">:lguserid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;1&quot;</span>, <span class="ruby-value">:lgusername</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Atlasmw&quot;</span>}
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">result</span> = { <span class="ruby-value">:result</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;WrongPass&quot;</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">result</span> = { <span class="ruby-value">:result</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;NotExists&quot;</span> }
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">login</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">result</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-meta" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">meta</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="meta-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 255</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">meta</span>
+  <span class="ruby-identifier">meta_type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:meta</span>].<span class="ruby-identifier">to_sym</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">meta_type</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">meta_type</span>)
+  <span class="ruby-identifier">halt</span>(<span class="ruby-value">404</span>, <span class="ruby-string">&quot;Page not found&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-namespaces" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">namespaces</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="namespaces-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 274</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">namespaces</span>
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">query</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">namespaces</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">namespaces_by_prefix</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">id</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">attr</span> = { <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span> }
+          <span class="ruby-identifier">attr</span>[<span class="ruby-value">:canonical</span>] = <span class="ruby-identifier">prefix</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">prefix</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">ns</span>(<span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">attr</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-next_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">next_id</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="next_id-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">next_id</span>
+  <span class="ruby-ivar">@sequence_id</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">options</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="options-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 450</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">options</span>
+  <span class="ruby-identifier">api_response</span>(<span class="ruby-value">:options</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;success&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 157</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parse</span>
+  <span class="ruby-identifier">page</span> = <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">parse</span>({ <span class="ruby-value">:revid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span> <span class="ruby-operator">?</span>  <span class="ruby-identifier">page</span>[<span class="ruby-value">:pageid</span>] <span class="ruby-operator">:</span> <span class="ruby-value">0</span>}) <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Foopage&quot;</span>
+        <span class="ruby-identifier">_</span>.<span class="ruby-identifier">text!</span>(<span class="ruby-string">&#39;Sample &lt;B&gt;HTML&lt;/B&gt; content.&#39;</span>                  <span class="ruby-string">&#39;&lt;img width=&quot;150&quot; height=&quot;150&quot; class=&quot;thumbimage&quot; src=&quot;http://upload.wikimedia.org/foo/Ruby_logo.svg&quot; alt=&quot;Ruby logo.svg&quot;/&gt;&#39;</span>                  <span class="ruby-string">&#39;&lt;span class=&quot;editsection&quot;&gt;[&lt;a title=&quot;Edit section: Nomenclature&quot; href=&quot;/w/index.php?title=Seat_of_local_government&amp;amp;action=edit&amp;amp;section=1&quot;&gt;edit&lt;/a&gt;]&lt;/span&gt;&#39;</span>                  <span class="ruby-string">&#39;&lt;a title=&quot;Interpreted language&quot; href=&quot;/wiki/Interpreted_language&quot;&gt;interpreted language&lt;/a&gt;&#39;</span>
+        )
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">_</span>.<span class="ruby-identifier">text!</span>(<span class="ruby-string">&#39;Sample &lt;B&gt;HTML&lt;/B&gt; content.&#39;</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prop" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prop</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prop-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 188</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">prop</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_revisions</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:prop</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;revisions&quot;</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_undelete_token</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:drprop</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;token&#39;</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_token</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:intoken</span>]
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">get_info</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:prop</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;info&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-query" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">query</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="query-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 181</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">query</span>
+  [<span class="ruby-value">:prop</span>, <span class="ruby-value">:export</span>, <span class="ruby-value">:list</span>, <span class="ruby-value">:meta</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">query_type</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">query_type</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">query_type</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">halt</span>(<span class="ruby-value">404</span>, <span class="ruby-string">&quot;Page not found&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-query_pages" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">query_pages</span><span
+            class="method-args">() { |_, title, get| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="query_pages-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 316</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">query_pages</span>
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">query</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">pages</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">requested_page_titles</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">title</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">_</span>, <span class="ruby-identifier">title</span>, <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">title</span>))
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-requested_page_titles" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">requested_page_titles</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="requested_page_titles-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 361</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">requested_page_titles</span>
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:titles</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;|&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reset" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reset-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reset</span>
+  <span class="ruby-ivar">@sequence_id</span> = <span class="ruby-value">0</span>
+
+  <span class="ruby-ivar">@users</span> = {}
+  <span class="ruby-identifier">add_user</span>(<span class="ruby-string">&#39;atlasmw&#39;</span>, <span class="ruby-string">&#39;wombat&#39;</span>, <span class="ruby-string">&#39;local&#39;</span>, <span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">add_user</span>(<span class="ruby-string">&#39;nonadmin&#39;</span>, <span class="ruby-string">&#39;sekrit&#39;</span>, <span class="ruby-string">&#39;local&#39;</span>, <span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">add_user</span>(<span class="ruby-string">&#39;ldapuser&#39;</span>, <span class="ruby-string">&#39;ldappass&#39;</span>, <span class="ruby-string">&#39;ldapdomain&#39;</span>, <span class="ruby-keyword">false</span>)
+
+  <span class="ruby-ivar">@pages</span> = <span class="ruby-constant">ApiPages</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add</span>(<span class="ruby-string">&#39;Main Page&#39;</span>, <span class="ruby-string">&#39;Content&#39;</span>)
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add</span>(<span class="ruby-string">&#39;Main 2&#39;</span>, <span class="ruby-string">&#39;Content&#39;</span>)
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add</span>(<span class="ruby-string">&#39;Empty&#39;</span>, <span class="ruby-string">&#39;&#39;</span>)
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add</span>(<span class="ruby-string">&#39;Level/Level/Index&#39;</span>, <span class="ruby-string">&#39;{{#include:Foo}} {{#include:Bar}}&#39;</span>)
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add_namespace</span>(<span class="ruby-value">100</span>, <span class="ruby-string">&quot;Book&quot;</span>)
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add</span>(<span class="ruby-string">&#39;Book:Italy&#39;</span>, <span class="ruby-string">&#39;Introduction&#39;</span>)
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add_namespace</span>(<span class="ruby-value">200</span>, <span class="ruby-string">&quot;Sandbox&quot;</span>)
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add</span>(<span class="ruby-string">&#39;Foopage&#39;</span>, <span class="ruby-string">&#39;Content&#39;</span>)
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add</span>(<span class="ruby-string">&#39;Redirect&#39;</span>, <span class="ruby-string">&#39;#REDIRECT&#39;</span>, <span class="ruby-keyword">true</span>)
+
+  <span class="ruby-ivar">@extensions</span> = { <span class="ruby-string">&#39;FooExtension&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;r1&#39;</span>, <span class="ruby-string">&#39;BarExtension&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;r2&#39;</span>, <span class="ruby-string">&#39;Semantic MediaWiki&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;1.5&#39;</span> }
+
+  <span class="ruby-ivar">@logged_in_users</span> = []
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="search-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 242</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">query</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">search</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">namespaces</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:srnamespace</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:srnamespace</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;|&#39;</span>) <span class="ruby-operator">:</span> [ <span class="ruby-string">&quot;0&quot;</span> ]
+        <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:srsearch</span>], <span class="ruby-identifier">namespaces</span>).<span class="ruby-identifier">first</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:srlimit</span>].<span class="ruby-identifier">to_i</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">p</span>(<span class="ruby-keyword">nil</span>, { <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span>[<span class="ruby-value">:title</span>], <span class="ruby-value">:ns</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span>[<span class="ruby-value">:namespace</span>], <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">page</span>[<span class="ruby-value">:pageid</span>] })
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-siteinfo" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">siteinfo</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="siteinfo-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 261</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">siteinfo</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">siteinfo_type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:siprop</span>]
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">siteinfo_type</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">siteinfo_type</span>)
+    <span class="ruby-identifier">halt</span>(<span class="ruby-value">404</span>, <span class="ruby-string">&quot;Page not found&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">query</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">_</span>.<span class="ruby-identifier">general</span>(<span class="ruby-identifier">generator</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;MediaWiki #{MediaWiki::VERSION}&quot;</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tokens" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tokens</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="tokens-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 365</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">tokens</span>
+  <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">request</span>(<span class="ruby-identifier">user</span>)
+
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">tokens</span>(<span class="ruby-value">:optionstoken</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">optionstoken</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-undelete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">undelete</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="undelete-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">undelete</span>
+  <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">validate_admin</span>
+
+  <span class="ruby-identifier">title</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:title</span>]
+  <span class="ruby-identifier">revisions</span> = <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">undelete</span>(<span class="ruby-identifier">title</span>)
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">undelete</span>(<span class="ruby-keyword">nil</span>, {<span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">title</span>, <span class="ruby-value">:revisions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">revisions</span>})
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-upload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">upload</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="upload-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 147</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">upload</span>
+  <span class="ruby-ivar">@token</span>.<span class="ruby-identifier">validate</span>
+
+  <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:filename</span>]
+  <span class="ruby-ivar">@pages</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:file</span>])
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">upload</span>(<span class="ruby-keyword">nil</span>, {<span class="ruby-value">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">filename</span>, <span class="ruby-value">:result</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Success&quot;</span>})
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="user-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 356</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user</span>
+  <span class="ruby-identifier">username</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">cookies</span>[<span class="ruby-string">&#39;login&#39;</span>]
+  <span class="ruby-ivar">@users</span>[<span class="ruby-identifier">username</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">logged_in</span>(<span class="ruby-identifier">username</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-userrights" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">userrights</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="userrights-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 454</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">userrights</span>
+  <span class="ruby-identifier">api_response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">_</span>.<span class="ruby-identifier">userrights</span>({<span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>]}) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">removed</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:remove</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;|&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">removed_group</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">group</span>(<span class="ruby-identifier">removed_group</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">_</span>.<span class="ruby-identifier">added</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:add</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;|&#39;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">added_group</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">_</span>.<span class="ruby-identifier">group</span>(<span class="ruby-identifier">added_group</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-validate_page_overwrite" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_page_overwrite</span><span
+            class="method-args">(current_page)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validate_page_overwrite-source">
+            <pre><span class="ruby-comment"># File lib/media_wiki/fake_wiki.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_page_overwrite</span>(<span class="ruby-identifier">current_page</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_page</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:createonly</span>]
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ApiError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;articleexists&quot;</span>, <span class="ruby-string">&quot;The article you tried to create has been created already&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

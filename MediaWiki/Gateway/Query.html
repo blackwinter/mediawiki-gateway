@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>module MediaWiki::Gateway::Query - mediawiki-gateway Application documentation (v0.6.2)</title>
+<title>module MediaWiki::Gateway::Query - mediawiki-gateway Application documentation (v0.7.0.rc1)</title>
 
 <link href="../../fonts.css" rel="stylesheet">
 <link href="../../rdoc.css" rel="stylesheet">
@@ -148,7 +148,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">custom_query</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">form_data</span> = {}
   <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">form_data</span>[<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_s</span> }
-  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">form_data</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>)).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query&#39;</span>]
+  <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">form_data</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>)).<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;query&#39;</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -274,16 +274,16 @@ Foundation wikis allow only 50 for normal users)</p>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">smw_version</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1.7</span>
-    <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
       <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;ask&#39;</span>,
       <span class="ruby-string">&#39;query&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{query}|#{params.join(&#39;|&#39;)}&quot;</span>
-    )).<span class="ruby-identifier">first</span>
+    ))
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+    <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
       <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;parse&#39;</span>,
       <span class="ruby-string">&#39;prop&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;text&#39;</span>,
       <span class="ruby-string">&#39;text&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;{{#ask:#{query}|#{params.push(&#39;format=list&#39;).join(&#39;|&#39;)}}}&quot;</span>
-    )).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;parse/text&#39;</span>].<span class="ruby-identifier">text</span>
+    )).<span class="ruby-identifier">elements</span>[<span class="ruby-string">&#39;parse/text&#39;</span>].<span class="ruby-identifier">text</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

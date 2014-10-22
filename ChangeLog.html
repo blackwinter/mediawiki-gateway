@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>ChangeLog - mediawiki-gateway Application documentation (v0.6.2)</title>
+<title>ChangeLog - mediawiki-gateway Application documentation (v0.7.0.rc1)</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -88,7 +88,34 @@
 
 <h2 id="label-0.7.0+%5Bunreleased%5D">0.7.0 [unreleased]<span><a href="#label-0.7.0+%5Bunreleased%5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
-<p>…</p>
+<p><strong>Required Ruby version is now 1.9.3 or higher.</strong></p>
+</li><li>
+<p>For better Unicode support, install the <code>unicode</code> or
+<code>activesupport</code> gem.</p>
+</li><li>
+<p>API methods are grouped into submodules of <a
+href="MediaWiki/Gateway.html">MediaWiki::Gateway</a>.</p>
+</li><li>
+<p><a
+href="MediaWiki/Gateway.html#method-i-send_request">MediaWiki::Gateway#send_request</a>
+allows generic API requests.</p>
+</li><li>
+<p><a href="MediaWiki/Gateway.html#method-c-new">MediaWiki::Gateway.new</a>
+learned <code>user_agent</code> option.</p>
+</li><li>
+<p><a
+href="MediaWiki/Gateway/Query.html#method-i-custom_query">MediaWiki::Gateway::Query#custom_query</a>
+is now public.</p>
+</li><li>
+<p><a
+href="MediaWiki/Gateway.html#attribute-i-wiki_url">MediaWiki::Gateway#wiki_url</a>
+attribute is now exposed.</p>
+</li><li>
+<p>Added <code>mediawiki-gateway</code> command-line client.</p>
+</li><li>
+<p>Changed or removed some of the dependencies.</p>
+</li><li>
+<p>Housekeeping and internal refactoring.</p>
 </li></ul>
 </main>
 

@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Table of Contents - mediawiki-gateway Application documentation (v0.6.2)</title>
+<title>Table of Contents - mediawiki-gateway Application documentation (v0.7.0.rc1)</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 
 <body id="top" class="table-of-contents">
 <main role="main">
-<h1 class="class">Table of Contents - mediawiki-gateway Application documentation (v0.6.2)</h1>
+<h1 class="class">Table of Contents - mediawiki-gateway Application documentation (v0.7.0.rc1)</h1>
 
 <h2 id="pages">Pages</h2>
 <ul>
@@ -47,7 +47,9 @@
 
     <ul>
       <li><a href="README_md.html#label-MediaWiki%3A%3AGateway">MediaWiki::Gateway</a>
+      <li><a href="README_md.html#label-Installation">Installation</a>
       <li><a href="README_md.html#label-Example">Example</a>
+      <li><a href="README_md.html#label-Changing+the+default+User-Agent">Changing the default User-Agent</a>
       <li><a href="README_md.html#label-Development+environment">Development environment</a>
       <li><a href="README_md.html#label-Testing+against+a+live+MediaWiki+instance">Testing against a live MediaWiki instance</a>
       <li><a href="README_md.html#label-Status">Status</a>
@@ -63,10 +65,28 @@
     <a href="MediaWiki/APIError.html">MediaWiki::APIError</a>
   </li>
   <li class="class">
-    <a href="MediaWiki/Config.html">MediaWiki::Config</a>
+    <a href="MediaWiki/Exception.html">MediaWiki::Exception</a>
+  </li>
+  <li class="module">
+    <a href="MediaWiki/FakeWiki.html">MediaWiki::FakeWiki</a>
   </li>
   <li class="class">
-    <a href="MediaWiki/Exception.html">MediaWiki::Exception</a>
+    <a href="MediaWiki/FakeWiki/ApiError.html">MediaWiki::FakeWiki::ApiError</a>
+  </li>
+  <li class="class">
+    <a href="MediaWiki/FakeWiki/ApiPages.html">MediaWiki::FakeWiki::ApiPages</a>
+  </li>
+  <li class="class">
+    <a href="MediaWiki/FakeWiki/ApiToken.html">MediaWiki::FakeWiki::ApiToken</a>
+  </li>
+  <li class="class">
+    <a href="MediaWiki/FakeWiki/App.html">MediaWiki::FakeWiki::App</a>
+  </li>
+  <li class="module">
+    <a href="MediaWiki/FakeWiki/RSpecAdapter.html">MediaWiki::FakeWiki::RSpecAdapter</a>
+  </li>
+  <li class="class">
+    <a href="MediaWiki/FakeWiki/WikiPage.html">MediaWiki::FakeWiki::WikiPage</a>
   </li>
   <li class="class">
     <a href="MediaWiki/Gateway.html">MediaWiki::Gateway</a>
@@ -90,6 +110,9 @@
     <a href="MediaWiki/Unauthorized.html">MediaWiki::Unauthorized</a>
   </li>
   <li class="module">
+    <a href="MediaWiki/Utils.html">MediaWiki::Utils</a>
+  </li>
+  <li class="module">
     <a href="MediaWiki/Version.html">MediaWiki::Version</a>
   </li>
 </ul>
@@ -98,9 +121,9 @@
 <ul>
 
   <li class="method">
-    <a href="MediaWiki/Config.html#method-c-new">::new</a>
+    <a href="MediaWiki/FakeWiki/RSpecAdapter.html#method-c-enhance">::enhance</a>
     &mdash;
-    <span class="container">MediaWiki::Config</span>
+    <span class="container">MediaWiki::FakeWiki::RSpecAdapter</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway.html#method-c-new">::new</a>
@@ -108,14 +131,69 @@
     <span class="container">MediaWiki::Gateway</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/APIError.html#method-c-new">::new</a>
     &mdash;
     <span class="container">MediaWiki::APIError</span>
 
   <li class="method">
-    <a href="MediaWiki/Config.html#method-i-abort">#abort</a>
+    <a href="MediaWiki/FakeWiki/ApiError.html#method-c-new">::new</a>
     &mdash;
-    <span class="container">MediaWiki::Config</span>
+    <span class="container">MediaWiki::FakeWiki::ApiError</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/WikiPage.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::WikiPage</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-action">#action</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-i-add">#add</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-i-add_namespace">#add_namespace</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-add_user">#add_user</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-allpages">#allpages</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-api_error_response">#api_error_response</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-api_response">#api_response</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-backlinks">#backlinks</a>
@@ -143,9 +221,29 @@
     <span class="container">MediaWiki::Gateway::Users</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-createaccount">#createaccount</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-createusertoken">#createusertoken</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Query.html#method-i-custom_query">#custom_query</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Query</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-delete">#delete</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-i-delete">#delete</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-delete">#delete</a>
@@ -153,14 +251,29 @@
     <span class="container">MediaWiki::Gateway::Pages</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-deletetoken">#deletetoken</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Files.html#method-i-download">#download</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Files</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-edit">#edit</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-edit">#edit</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Pages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-edittoken">#edittoken</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Users.html#method-i-email_user">#email_user</a>
@@ -173,9 +286,19 @@
     <span class="container">MediaWiki::Gateway::Site</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-export">#export</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Site.html#method-i-extensions">#extensions</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Site</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-extensions">#extensions</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-get">#get</a>
@@ -183,9 +306,19 @@
     <span class="container">MediaWiki::Gateway::Pages</span>
 
   <li class="method">
-    <a href="MediaWiki.html#method-i-get_base_name">#get_base_name</a>
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-i-get">#get</a>
     &mdash;
-    <span class="container">MediaWiki</span>
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
+
+  <li class="method">
+    <a href="MediaWiki/Utils.html#method-i-get_base_name">#get_base_name</a>
+    &mdash;
+    <span class="container">MediaWiki::Utils</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-get_info">#get_info</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Users.html#method-i-get_options_token">#get_options_token</a>
@@ -193,9 +326,9 @@
     <span class="container">MediaWiki::Gateway::Users</span>
 
   <li class="method">
-    <a href="MediaWiki.html#method-i-get_path_to_subpage">#get_path_to_subpage</a>
+    <a href="MediaWiki/Utils.html#method-i-get_path_to_subpage">#get_path_to_subpage</a>
     &mdash;
-    <span class="container">MediaWiki</span>
+    <span class="container">MediaWiki::Utils</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway.html#method-i-get_response">#get_response</a>
@@ -203,9 +336,19 @@
     <span class="container">MediaWiki::Gateway</span>
 
   <li class="method">
-    <a href="MediaWiki.html#method-i-get_subpage">#get_subpage</a>
+    <a href="MediaWiki/FakeWiki/App.html#method-i-get_revisions">#get_revisions</a>
     &mdash;
-    <span class="container">MediaWiki</span>
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/Utils.html#method-i-get_subpage">#get_subpage</a>
+    &mdash;
+    <span class="container">MediaWiki::Utils</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-get_token">#get_token</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway.html#method-i-get_token">#get_token</a>
@@ -213,14 +356,29 @@
     <span class="container">MediaWiki::Gateway</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-get_undelete_token">#get_undelete_token</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-get_undelete_token">#get_undelete_token</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Pages</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-get_userrights_token">#get_userrights_token</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Users.html#method-i-get_userrights_token">#get_userrights_token</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Users</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-handle_request">#handle_request</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway.html#method-i-http_send">#http_send</a>
@@ -243,6 +401,16 @@
     <span class="container">MediaWiki::Gateway::Site</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-import">#import</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-importtoken">#importtoken</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway.html#method-i-iterate_query">#iterate_query</a>
     &mdash;
     <span class="container">MediaWiki::Gateway</span>
@@ -258,9 +426,29 @@
     <span class="container">MediaWiki::Gateway::Pages</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-list">#list</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-i-list">#list</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-list">#list</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Pages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-logged_in">#logged_in</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-login">#login</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Users.html#method-i-login">#login</a>
@@ -273,9 +461,29 @@
     <span class="container">MediaWiki::Gateway</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-meta">#meta</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-move">#move</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Pages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-namespaces">#namespaces</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-i-namespaces_by_id">#namespaces_by_id</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-i-namespaces_by_prefix">#namespaces_by_prefix</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Site.html#method-i-namespaces_by_prefix">#namespaces_by_prefix</a>
@@ -283,14 +491,49 @@
     <span class="container">MediaWiki::Gateway::Site</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-next_id">#next_id</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-options">#options</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Users.html#method-i-options">#options</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Users</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-optionstoken">#optionstoken</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-parse">#parse</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-prop">#prop</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-protect">#protect</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Pages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-query">#query</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-query_pages">#query_pages</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-redirect-3F">#redirect?</a>
@@ -303,6 +546,26 @@
     <span class="container">MediaWiki::Gateway::Pages</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-request">#request</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-requested_page_titles">#requested_page_titles</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-requested_token_type">#requested_token_type</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-reset">#reset</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-review">#review</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Pages</span>
@@ -311,6 +574,16 @@
     <a href="MediaWiki/Gateway/Pages.html#method-i-revision">#revision</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Pages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-search">#search</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-i-search">#search</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Query.html#method-i-search">#search</a>
@@ -323,14 +596,29 @@
     <span class="container">MediaWiki::Gateway::Query</span>
 
   <li class="method">
+    <a href="MediaWiki/Gateway.html#method-i-send_request">#send_request</a>
+    &mdash;
+    <span class="container">MediaWiki::Gateway</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Users.html#method-i-set_groups">#set_groups</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Users</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-set_type">#set_type</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Site.html#method-i-siteinfo">#siteinfo</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Site</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-siteinfo">#siteinfo</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Version.html#method-i-to_a">#to_a</a>
@@ -348,14 +636,29 @@
     <span class="container">MediaWiki::Version</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-tokens">#tokens</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiPages.html#method-i-undelete">#undelete</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiPages</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-undelete">#undelete</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway/Pages.html#method-i-undelete">#undelete</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Pages</span>
 
   <li class="method">
-    <a href="MediaWiki.html#method-i-upcase_first_char">#upcase_first_char</a>
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-undeletetoken">#undeletetoken</a>
     &mdash;
-    <span class="container">MediaWiki</span>
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Files.html#method-i-upload">#upload</a>
@@ -363,14 +666,34 @@
     <span class="container">MediaWiki::Gateway::Files</span>
 
   <li class="method">
-    <a href="MediaWiki.html#method-i-uri_to_wiki">#uri_to_wiki</a>
+    <a href="MediaWiki/FakeWiki/App.html#method-i-upload">#upload</a>
     &mdash;
-    <span class="container">MediaWiki</span>
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/Utils.html#method-i-uri_to_wiki">#uri_to_wiki</a>
+    &mdash;
+    <span class="container">MediaWiki::Utils</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-user">#user</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/App.html#method-i-userrights">#userrights</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Users.html#method-i-userrights">#userrights</a>
     &mdash;
     <span class="container">MediaWiki::Gateway::Users</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-userrightstoken">#userrightstoken</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Users.html#method-i-users">#users</a>
@@ -383,14 +706,24 @@
     <span class="container">MediaWiki::Gateway</span>
 
   <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-validate">#validate</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
+    <a href="MediaWiki/FakeWiki/ApiToken.html#method-i-validate_admin">#validate_admin</a>
+    &mdash;
+    <span class="container">MediaWiki::FakeWiki::ApiToken</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway.html#method-i-validate_options">#validate_options</a>
     &mdash;
     <span class="container">MediaWiki::Gateway</span>
 
   <li class="method">
-    <a href="MediaWiki.html#method-i-version">#version</a>
+    <a href="MediaWiki/FakeWiki/App.html#method-i-validate_page_overwrite">#validate_page_overwrite</a>
     &mdash;
-    <span class="container">MediaWiki</span>
+    <span class="container">MediaWiki::FakeWiki::App</span>
 
   <li class="method">
     <a href="MediaWiki/Gateway/Site.html#method-i-version">#version</a>
@@ -398,14 +731,19 @@
     <span class="container">MediaWiki::Gateway::Site</span>
 
   <li class="method">
+    <a href="MediaWiki/Utils.html#method-i-version">#version</a>
+    &mdash;
+    <span class="container">MediaWiki::Utils</span>
+
+  <li class="method">
     <a href="MediaWiki/Gateway.html#method-i-warning">#warning</a>
     &mdash;
     <span class="container">MediaWiki::Gateway</span>
 
   <li class="method">
-    <a href="MediaWiki.html#method-i-wiki_to_uri">#wiki_to_uri</a>
+    <a href="MediaWiki/Utils.html#method-i-wiki_to_uri">#wiki_to_uri</a>
     &mdash;
-    <span class="container">MediaWiki</span>
+    <span class="container">MediaWiki::Utils</span>
 </ul>
 </main>
 

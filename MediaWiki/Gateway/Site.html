@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>module MediaWiki::Gateway::Site - mediawiki-gateway Application documentation (v0.6.2)</title>
+<title>module MediaWiki::Gateway::Site - mediawiki-gateway Application documentation (v0.7.0.rc1)</title>
 
 <link href="../../fonts.css" rel="stylesheet">
 <link href="../../rdoc.css" rel="stylesheet">
@@ -142,12 +142,12 @@
           <div class="method-source-code" id="export-source">
             <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">export</span>(<span class="ruby-identifier">page_titles</span>, <span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+  <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
     <span class="ruby-string">&#39;action&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
     <span class="ruby-string">&#39;titles&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Array</span>(<span class="ruby-identifier">page_titles</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;|&#39;</span>),
     <span class="ruby-string">&#39;export&#39;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-string">&#39;exportnowrap&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>
-  )).<span class="ruby-identifier">first</span>
+  ))
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -186,11 +186,11 @@
           <div class="method-source-code" id="extensions-source">
             <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extensions</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
     <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
     <span class="ruby-string">&#39;meta&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;siteinfo&#39;</span>,
     <span class="ruby-string">&#39;siprop&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;extensions&#39;</span>
-  )).<span class="ruby-identifier">first</span>
+  ))
 
   <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">res</span>, <span class="ruby-string">&#39;//ext&#39;</span>).<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">extension</span>, <span class="ruby-identifier">extensions</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">name</span> = <span class="ruby-identifier">extension</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;name&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span>
@@ -239,7 +239,7 @@ revisions=“0”&gt; means duplicate, not imported</p>
           <div class="method-source-code" id="import-source">
             <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">import</span>(<span class="ruby-identifier">xmlfile</span>, <span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+  <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
     <span class="ruby-string">&#39;action&#39;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;import&#39;</span>,
     <span class="ruby-string">&#39;xml&#39;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">xmlfile</span>),
     <span class="ruby-string">&#39;token&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">get_token</span>(<span class="ruby-string">&#39;import&#39;</span>, <span class="ruby-string">&#39;Main Page&#39;</span>), <span class="ruby-comment"># NB: dummy page name</span>
@@ -283,11 +283,11 @@ revisions=“0”&gt; means duplicate, not imported</p>
           <div class="method-source-code" id="namespaces_by_prefix-source">
             <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">namespaces_by_prefix</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
     <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
     <span class="ruby-string">&#39;meta&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;siteinfo&#39;</span>,
     <span class="ruby-string">&#39;siprop&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;namespaces&#39;</span>
-  )).<span class="ruby-identifier">first</span>
+  ))
 
   <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">res</span>, <span class="ruby-string">&#39;//ns&#39;</span>).<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">namespaces</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">prefix</span> = <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-string">&#39;canonical&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span>
@@ -330,10 +330,10 @@ href="http://www.mediawiki.org/wiki/API:Siteinfo">www.mediawiki.org/wiki/API:Sit
           <div class="method-source-code" id="siteinfo-source">
             <pre><span class="ruby-comment"># File lib/media_wiki/gateway/site.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">siteinfo</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">make_api_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
+  <span class="ruby-identifier">res</span> = <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(
     <span class="ruby-string">&#39;action&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;query&#39;</span>,
     <span class="ruby-string">&#39;meta&#39;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;siteinfo&#39;</span>
-  )).<span class="ruby-identifier">first</span>
+  ))
 
   <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">XPath</span>.<span class="ruby-identifier">first</span>(<span class="ruby-identifier">res</span>, <span class="ruby-string">&#39;//query/general&#39;</span>)
     .<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span>(<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>), <span class="ruby-identifier">h</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span> }
