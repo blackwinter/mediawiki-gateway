@@ -1,12 +1,12 @@
-Wed, 22 Oct 2014 16:57:49 +0200
+Thu, 23 Oct 2014 12:08:08 +0200
 COPYING	Wed, 22 Oct 2014 14:21:35 +0200
-ChangeLog	Wed, 22 Oct 2014 16:01:17 +0200
-README.md	Wed, 22 Oct 2014 16:57:48 +0200
+ChangeLog	Thu, 23 Oct 2014 10:51:19 +0200
+README.md	Thu, 23 Oct 2014 10:58:32 +0200
 lib/media_wiki.rb	Wed, 22 Oct 2014 15:23:48 +0200
 lib/media_wiki/utils.rb	Wed, 22 Oct 2014 14:21:35 +0200
 lib/mediawiki-gateway.rb	Mon, 06 Oct 2014 09:53:14 +0200
 lib/media_wiki/gateway.rb	Wed, 22 Oct 2014 16:10:15 +0200
-lib/media_wiki/version.rb	Wed, 22 Oct 2014 14:59:43 +0200
+lib/media_wiki/version.rb	Thu, 23 Oct 2014 10:58:55 +0200
 lib/media_wiki/exception.rb	Mon, 06 Oct 2014 09:53:14 +0200
 lib/media_wiki/fake_wiki.rb	Wed, 22 Oct 2014 14:52:06 +0200
 lib/media_wiki/gateway/site.rb	Wed, 22 Oct 2014 14:21:35 +0200
