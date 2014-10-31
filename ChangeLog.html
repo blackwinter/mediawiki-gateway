@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>ChangeLog - mediawiki-gateway Application documentation (v1.0.0.rc1)</title>
+<title>ChangeLog - mediawiki-gateway Application documentation (v1.0.0)</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -59,7 +59,7 @@
 
   <ul class="link-list" role="directory">
     <li><a href="#label-Revision+history+for+mediawiki-gateway">Revision history for mediawiki-gateway</a>
-    <li><a href="#label-1.0.0+%5Bunreleased%5D">1.0.0 [unreleased]</a>
+    <li><a href="#label-1.0.0+-5B2014-10-31-5D">1.0.0 [2014-10-31]</a>
   </ul>
 </div>
 
@@ -86,7 +86,7 @@
 
 <h1 id="label-Revision+history+for+mediawiki-gateway">Revision history for mediawiki-gateway<span><a href="#label-Revision+history+for+mediawiki-gateway">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 
-<h2 id="label-1.0.0+%5Bunreleased%5D">1.0.0 [unreleased]<span><a href="#label-1.0.0+%5Bunreleased%5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-1.0.0+-5B2014-10-31-5D">1.0.0 [2014-10-31]<span><a href="#label-1.0.0+-5B2014-10-31-5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
 <p><strong>Required Ruby version is now 1.9.3 or higher.</strong></p>
 </li><li>
@@ -96,20 +96,32 @@
 <p>API methods are grouped into submodules of <a
 href="MediaWiki/Gateway.html">MediaWiki::Gateway</a>.</p>
 </li><li>
+<p><a href="MediaWiki/Utils.html">MediaWiki::Utils</a> has been added as a
+proper module.</p>
+</li><li>
+<p><a href="MediaWiki/FakeWiki.html">MediaWiki::FakeWiki</a> has been added as
+a first-class citizen.</p>
+</li><li>
+<p>MediaWiki::Config has been removed.</p>
+</li><li>
 <p><a
 href="MediaWiki/Gateway.html#method-i-send_request">MediaWiki::Gateway#send_request</a>
 allows generic API requests.</p>
+</li><li>
+<p><a
+href="MediaWiki/Gateway/Query.html#method-i-custom_query">MediaWiki::Gateway::Query#custom_query</a>
+has been made public.</p>
 </li><li>
 <p><a href="MediaWiki/Gateway.html#method-c-new">MediaWiki::Gateway.new</a>
 learned <code>user_agent</code> option.</p>
 </li><li>
 <p><a
-href="MediaWiki/Gateway/Query.html#method-i-custom_query">MediaWiki::Gateway::Query#custom_query</a>
-is now public.</p>
+href="MediaWiki/Gateway.html#attribute-i-headers">MediaWiki::Gateway#headers</a>
+attribute has been exposed.</p>
 </li><li>
 <p><a
 href="MediaWiki/Gateway.html#attribute-i-wiki_url">MediaWiki::Gateway#wiki_url</a>
-attribute is now exposed.</p>
+attribute has been exposed.</p>
 </li><li>
 <p>Added <code>mediawiki-gateway</code> command-line client.</p>
 </li><li>
